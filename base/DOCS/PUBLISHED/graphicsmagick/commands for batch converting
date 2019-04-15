@@ -1,0 +1,13 @@
+find -name "*.JPG" | while read f; do gm -convert -scale 800 $f thumbs/$f; done
+
+
+
+find -name "*.JPG" | while read f; do gm -convert -scale 200 "$f" "thumbs/${f%.*}_sm.jpg"; done
+
+
+
+rename 'y/A-Z/a-z/' *
+
+
+#Add watermarks
+exec( "composite -dissolve 55 -gravity SouthEast  watermark_image.png target_image.jpg  result_image.jpg" );

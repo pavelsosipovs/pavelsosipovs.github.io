@@ -1,0 +1,120 @@
+	Options -Indexes +FollowSymLinks
+	AddDefaultCharset UTF-8
+	DirectoryIndex index.php
+
+
+<IfModule mod_rewrite.c>
+
+  RewriteEngine on
+
+	### Avoiding lot of URL checking
+	### http://habrahabr.ru/blogs/webdev/75885/
+	RewriteCond %{ENV:REDIRECT_FINISH} !^$
+	RewriteRule ^ - [L]
+	### Will end checking after [E=FINISH:1,L,QSA]
+
+
+#Redirect 301 / from osipov.lv to www.osipov.lv
+RewriteCond %{HTTP_HOST} ^osipov\.lv [NC]
+RewriteRule ^(.*) http://www.osipov.lv/$1 [R=301,L]
+
+
+	### http://webo.in/articles/habrahabr/07-gzip-all/
+
+	AddType text/javascript .js
+	AddType text/css .css
+
+	<FilesMatch \\.js.gz$>
+		ForceType text/javascript
+		Header set Content-Encoding: gzip
+	</FilesMatch>
+	<FilesMatch .*\.js$>
+		RewriteEngine On
+		RewriteCond %{HTTP:Accept-Encoding} gzip
+		RewriteCond %{REQUEST_FILENAME}.gz -s
+		### -f
+		RewriteRule (.*)\.js$ %{REQUEST_URI}\.gz [L]
+	</FilesMatch>
+
+
+	<FilesMatch \\.css.gz$>
+		ForceType text/css
+		Header set Content-Encoding: gzip
+	</FilesMatch>
+	<FilesMatch .*\.css$>
+		RewriteEngine On
+		RewriteCond %{HTTP:Accept-Encoding} gzip
+		RewriteCond %{REQUEST_FILENAME}.gz -s
+		RewriteRule (.*)\.css$ %{REQUEST_URI}\.gz [L]
+	</FilesMatch>
+
+# There was a lot of comment spam with the User Agents Crazy Browser 1.x.x and Mozilla/3.0 (compatible; Indy Library)
+# so I am using the following code to block it. Note that I removed the starting "^", so that it will ban
+# any user-agent with "Indy Library" or "TrackBack" anywhere in its user-agent string, and that it will
+# accept any character - including a space - after "Indy" or TrackBack.
+#RewriteCond %{HTTP_USER_AGENT} Indy.Library [NC,OR]
+#RewriteCond %{HTTP_USER_AGENT} TrackBack [NC,OR]
+#RewriteCond %{HTTP_USER_AGENT} ^Crazy\ Browser [NC]
+#RewriteCond %{HTTP_USER_AGENT} DataCha0s [NC]
+#RewriteRule .* - [F]
+
+    #sending this possible headers int PHP $_SERVER variables
+    #  RewriteRule .* - [E=HTTP_IF_MODIFIED_SINCE:%{HTTP:If-Modified-Since}]
+    #  RewriteRule .* - [E=HTTP_IF_NONE_MATCH:%{HTTP:If-None-Match}]
+
+
+##SPECIFIC RULES GO HERE
+
+		#RewriteRule ^(.*)$ http://other.example.com/$1 [R=301,L]
+		### Redirect example
+
+    #RewriteRule  ^.*/bnr_([0-9]*)\.([a-z]{3,3})$ data_provider/getBnner/index\.php?id=$1&mime=$2 [E=FINISH:1,L,QSA]
+    #RewriteRule  ^.*/img_([0-9]*)\.([a-z]{3,3})$ data_provider/getImage/getImage\.php?id=$1&mime=$2 [E=FINISH:1,L,QSA]
+    #RewriteRule  ^.*/img_big_([0-9]*)\.([a-z]{3,3})$ data_provider/getImage/getImage\.php?id=$1&mime=$2&big=1 [E=FINISH:1,L,QSA]
+    #RewriteRule  ^.*/capcha/get.png([\?\.0-9]*){0,40}$ data_provider/capcha/get\.php?id=$1 [E=FINISH:1,L,QSA]
+    #RewriteRule  ^.*/doc_([0-9]*)\.[a-z]{3,4}$ data_provider/getDocument/getDocument\.php?id=$1 [E=FINISH:1,L,QSA]
+
+
+		#RewriteRule  ^.*([a-vx-z]{3,3})/([\-_a-zA-Z0-9]*)$ index\.php?lng=$1&var=$2 [E=FINISH:1,L,QSA]
+		#[R=301,L]
+		#[E=FINISH:1,L,QSA]
+
+	#RewriteRule 	^.*(php)/$							http://www.osipov.lv/index.php?v1=$1&%{QUERY_STRING} 								[L]
+	#RewriteRule 	^.*(php)/$							/index.php?v1=$1&%{QUERY_STRING} 								[L]
+
+#####!!!!!!At server should be /index\.php !!!!!!!!!
+	RewriteRule 	^([\-_a-zA-Z0-9]{1,40})/$   index\.php?v1=$1&%{QUERY_STRING}    [L]
+	RewriteRule 	^([\-_a-zA-Z0-9]{1,40})/([\-_a-zA-Z0-9]{1,40})/$    index\.php?v1=$1&v2=$2&%{QUERY_STRING}  [L]
+         RewriteRule 	^([\-_a-zA-Z0-9]{1,40})/([\-_a-zA-Z0-9]{1,40})/([\-_a-zA-Z0-9]{1,40})/$     index\.php?v1=$1&v2=$2&v3=$3&%{QUERY_STRING} [L]
+         RewriteRule 	^([\-_a-zA-Z0-9]{1,40})/([\-_a-zA-Z0-9]{1,40})/([\-_a-zA-Z0-9]{1,40})/([\-_a-zA-Z0-9]{1,40})/$     index\.php?v1=$1&v2=$2&v3=$3&v4=$4%{QUERY_STRING} [L]
+
+
+
+	#RewriteRule 	^([^/]+)([/]?)$							index\.php?v1=$1&%{QUERY_STRING} 								[L]
+	#RewriteRule 	^([^/]+)/([^/]+)([/]?)$						index\.php?v1=$1&v2=$2&%{QUERY_STRING} 							[L]
+	#RewriteRule 	^([^/]+)/([^/]+)/([^/]+)([/]?)$					/?v1=$1&v2=$2&v3=$3&%{QUERY_STRING} 					[L]
+	#RewriteRule 	^([^/]+)/([^/]+)/([^/]+)/([^/]+)([/]?)$				/?v1=$1&v2=$2&v3=$3&v4=$4&%{QUERY_STRING} 				[L]
+	#RewriteRule 	^([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)([/]?)$			/?v1=$1&v2=$2&v3=$3&v4=$4&v5=$5&%{QUERY_STRING} 			[L]
+	#RewriteRule 	^([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)([/]?)$		/?v1=$1&v2=$2&v3=$3&v4=$4&v5=$5&v6=$6&%{QUERY_STRING} 		[L]
+	#RewriteRule 	^([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)([/]?)$	/?v1=$1&v2=$2&v3=$3&v4=$4&v5=$5&v6=$6&v7=$7&%{QUERY_STRING} [L]
+
+
+</IfModule>
+
+
+
+
+
+
+<IfModule mod_expires.c>
+#cashing images
+	ExpiresActive on
+	ExpiresByType	image/jpeg "access plus 10 months"
+	ExpiresByType	image/png "access plus 12 months"
+	ExpiresByType	image/gif "access plus 12 months"
+	ExpiresByType image/x-icon "access plus 12 months"
+	#ExpiresByType application/x-javascript "access plus 2 weeks"
+	ExpiresByType text/css "access plus 12 months"
+	ExpiresDefault "access plus 1 months"
+
+</IfModule>
