@@ -1,0 +1,115 @@
+<!--
+ /* Font Definitions */
+.article p:first-letter{
+ color: initial;
+ font-family: initial;
+ font-size: initial;
+}
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:TimesNewRoman;}
+@font-face
+	{font-family:SymbolMT;}
+@font-face
+	{font-family:CMR10;}
+@font-face
+	{font-family:StarSymbol;}
+@font-face
+	{font-family:"\@Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+span.MsoFootnoteReference
+	{vertical-align:super;}
+span.MsoEndnoteReference
+	{vertical-align:super;}
+p.MsoEndnoteText, li.MsoEndnoteText, div.MsoEndnoteText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-align:center;
+	text-indent:14.2pt;
+	font-size:16.0pt;
+	font-family:"Arial","sans-serif";
+	font-weight:bold;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Arial","sans-serif";
+	font-weight:bold;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:56.7pt 42.5pt 56.7pt 85.05pt;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:595.3pt 841.9pt;
+	margin:56.7pt 42.5pt 56.7pt 85.05pt;}
+div.WordSection2
+	{page:WordSection2;}
+@page WordSection3
+	{size:595.3pt 841.9pt;
+	margin:56.7pt 42.55pt 56.7pt 42.55pt;}
+div.WordSection3
+	{page:WordSection3;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->

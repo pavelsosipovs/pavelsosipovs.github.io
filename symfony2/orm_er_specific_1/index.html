@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name='apple-mobile-web-app-capable' content='yes'/>
+    <meta name='mobile-web-app-capable' content='yes'>
+    <meta name='HandheldFriendly' content='true'/>
+    <meta name='viewport' content='width=device-width, user-scalable=no'/>
+
+    <link rel='SHORTCUT ICON' href='/engine/images/favicon.ico'/>
+    <title id='title'>Организация отношения один-ко-многим в Symfony2 с использованием ORM Doctrine</title>
+
+    <link rel="stylesheet" href="/engine/style.css?v=3" type="text/css"/>
+    <link rel="stylesheet" href="/engine/css/menu.css?v=1" type="text/css"/>
+
+    <meta name="description" content="Организация отношения один-ко-многим в Symfony2 с использованием ORM Doctrine"/>
+    <meta name="keywords" content="отношение один-ко-многим, Symfony2, ORM, Doctrine"/>
+
+    <script type="text/javascript"
+            src="/engine/js/mootools/mootools-1.2.4-core_and_more.js"></script>
+    <script type="text/javascript" src="/engine/js/engine.js"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Quantico|Poiret+One|Bad+Script&amp;subset=latin,cyrillic'
+          rel='stylesheet' type='text/css'/>
+
+                <script type="text/javascript"
+                    src="/engine/js/highslide/highslide-full.packed.js"></script>
+            <link rel="stylesheet" type="text/css" href="/engine/js/highslide/highslide.css"/>
+            <script type="text/javascript">
+                hs.graphicsDir = '/engine/js/highslide/graphics/';
+            </script>
+                <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19813451-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+
+<body class="bg" id="body">
+
+
+<div class='headDiv'>
+    <div id="animate-area">
+        <div class='headImg'>
+            <a href='/' title='На главную'><img
+                        alt='На главную' class="logo_image"
+                        src='/engine/images/top_image.png'
+                /></a>
+        </div>
+
+        <!--        <div class='headPhrase'>-->
+        <!--            <sup>Персональный сайт Павла Осипова</sup>-->
+        <!--        </div>-->
+
+        <div style='float: right;'>
+            <!--menu-->
+            
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<!--            https://www.w3schools.com/howto/howto_js_off-canvas.asp-->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="topnav" id="myTopnav">
+    <a href="/my_articles/"
+       title="Не-полный список моих публикаций, либо просто ссылка на издание, либо вся статья в PDF">Публикации</a>
+    <a href="/php/" title="Интересные вещи и рецепты связанные с PHP">PHP</a>
+    <a href="/books/" class="active" title="Книги, о которых приятно вспомнить после прочтения">Книги</a>
+    <a href="#about" onclick="toggleNav()" id="other_categories" title="Другие интересные разделы">Другие разделы 👇</a>
+    <a href="javascript:void(0);" class="icon" onclick="togglemenu()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<style>
+
+</style>
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function togglemenu() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+
+<!-- The overlay -->
+<div id="myNav" class="overlay">
+
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <!-- Overlay content -->
+    <div class="overlay-content" id="overlay-content">
+        <a href="/roller/" title="Рооолики :)">Ролики</a>
+        <a href="/my_sites/"
+           title="Сайты, в создании/поддержке которых я принимал участие, и о которых хочется что-то сказать">Мои
+            сайты</a>
+        <a href="/stuff/" title="Информация без определённой категории">Разное</a>
+        <a href="/music/" title="Если есть, что интересного о музыке, пишу сюда.">Музыка</a>
+        <a href="/semantic_web/" title="О семантической паутине и будущем развития Internet">Semantic WEB</a>
+        <a href="/pc_goodies/" title="Автоматизация некоторых рутинных операций в консоли и оффисе">Автоматизация
+            рутинных операций</a>
+        <a href="/symfony2/"
+           title="Неочевидные вещи о PHP фреймворке Symfony2, которые потребовали времени на нахождение решения">Symfony2</a>
+    </div>
+
+</div>
+<script>
+    var navOpened = false;
+
+    function toggleNav() {
+        if (navOpened) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    }
+
+    /* Open */
+    function openNav() {
+        navOpened = true;
+        var item = document.getElementById("myNav");
+        item.style.height = "100%";
+        item.style.width = "100%";
+        document.getElementById("overlay-content").style.display = "inline-block";
+    }
+
+    /* Close */
+    function closeNav() {
+        navOpened = false;
+        var item = document.getElementById("myNav");
+        item.style.height = "0%";
+        item.style.width = "0%";
+        document.getElementById("overlay-content").style.display = "none";
+    }
+</script>        </div>
+    </div>
+</div>
+        <ins>
+            <span class="left_100 top_link_holder">
+                <img src="/engine/images/top_sign_sm.png" alt="" style="border: 0px;"/>
+                <b>&nbsp;&nbsp;<a href="../#orm_er_specific_1">Назад в „Symfony2“</a></b>&nbsp;&nbsp;
+            </span>
+        </ins>
+        
+<div class='mainDiv'>
+
+	<div class='mainTextDiv'>
+
+
+		<h1 title="Такое отношение встречается везде, где имеется худо-бедно сложная база данных">
+			Организация отношения один-ко-многим в Symfony2 с использованием ORM Doctrine
+		</h1>
+        <p>
+Думаю в начале нужно пару слов сказать об отношении один-ко-многим. В общем случае, это когда у одной записи в основной таблиц может быть несколько подчинённых в другой таблице. В моём случае имеет место быть следующее отношение:
+        <div class="left_100">
+            <img src="/articles/symfony2/orm_er_specific_1/1_to_n_entity_relation.png"
+                 alt="Отношение один-ко-многим" />
+        </div>
+        Т.е. у каждого пользователя есть описания на каждом из поддерживаемых системой языков.
+        <br /><br />
+</p>
+
+<p>
+В терминах Symfony2 / Doctrine, для каждой таблицы из базы данных создаётся своя сущность (а бывает, что и несколько разных сущностей). Класс Entity, для таблицы Customer он выглядит примерно так:
+<br /><br />
+    <span style="color: #000000; font-weight: bold;">namespace</span> QR1000\MainBundle\Entity<span style="color: #339933;">;</span><br />
+use Doctrine\ORM\Mapping <span style="color: #b1b100;">as</span> ORM<span style="color: #339933;">;</span><br />
+use \Doctrine\Common\Collections\ArrayCollection <span style="color: #b1b100;">as</span> ArrayCollection<span style="color: #339933;">;</span><br />
+<br />
+<span style="color: #009933; font-style: italic;">/**<br />
+&nbsp;* QR1000\MainBundle\Entity\Customer<br />
+&nbsp;*<br />
+&nbsp;* @ORM\Table(name=&quot;customer&quot;)<br />
+&nbsp;* @ORM\Entity(repositoryClass=&quot;QR1000\MainBundle\StoreBundle\Repository\CustomerRepository&quot;)<br />
+&nbsp;*/</span><br />
+<span style="color: #000000; font-weight: bold;">class</span> Customer<br />
+<span style="color: #009900;">&#123;</span><br />
+&nbsp; &nbsp; <span style="color: #009933; font-style: italic;">/**<br />
+&nbsp; &nbsp; &nbsp;* @var integer $id<br />
+&nbsp; &nbsp; &nbsp;*<br />
+&nbsp; &nbsp; &nbsp;*<br />
+&nbsp; &nbsp; &nbsp;* @ORM\Column(name=&quot;id&quot;, type=&quot;integer&quot;, nullable=false)<br />
+&nbsp; &nbsp; &nbsp;* @ORM\Id<br />
+&nbsp; &nbsp; &nbsp;* @ORM\GeneratedValue(strategy=&quot;IDENTITY&quot;)<br />
+&nbsp; &nbsp; &nbsp;*/</span><br />
+&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$id</span><span style="color: #339933;">;</span><br />
+<span style="color: #339933;">.</span><br />
+<span style="color: #339933;">.</span><br />
+<span style="color: #339933;">.</span><br />
+&nbsp; &nbsp; <span style="color: #009933; font-style: italic;">/**<br />
+&nbsp; &nbsp; &nbsp;* @ORM\OneToMany(targetEntity=&quot;CustomerInfo&quot;, mappedBy=&quot;customer&quot;, cascade={&quot;all&quot;}, orphanRemoval=true)<br />
+&nbsp; &nbsp; &nbsp;*/</span><br />
+&nbsp; &nbsp; protected <span style="color: #000088;">$infoArray</span><span style="color: #339933;">;</span><br />
+<br />
+&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #009900;">&#123;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">infoArray</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> ArrayCollection<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span><br />
+<span style="color: #339933;">.</span><br />
+<span style="color: #339933;">.</span><br />
+<span style="color: #339933;">.</span><br />
+&nbsp; &nbsp; <span style="color: #009900;">&#125;</span><br />
+<span style="color: #339933;">.</span><br />
+<span style="color: #339933;">.</span><br />
+<span style="color: #339933;">.</span><br />
+<br />
+&nbsp; &nbsp; <span style="color: #009933; font-style: italic;">/**<br />
+&nbsp; &nbsp; &nbsp;* Add infoArray<br />
+&nbsp; &nbsp; &nbsp;*<br />
+&nbsp; &nbsp; &nbsp;* @param QR1000\MainBundle\Entity\CustomerInfo $infoArray<br />
+&nbsp; &nbsp; &nbsp;*/</span><br />
+&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addCustomerInfo<span style="color: #009900;">&#40;</span>\QR1000\MainBundle\Entity\CustomerInfo <span style="color: #000088;">$infoArray</span><span style="color: #009900;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #009900;">&#123;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">infoArray</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$infoArray</span><span style="color: #339933;">;</span><br />
+&nbsp; &nbsp; <span style="color: #009900;">&#125;</span><br />
+<br />
+&nbsp; &nbsp; <span style="color: #009933; font-style: italic;">/**<br />
+&nbsp; &nbsp; &nbsp;* Get infoArray<br />
+&nbsp; &nbsp; &nbsp;*<br />
+&nbsp; &nbsp; &nbsp;* @return Doctrine\Common\Collections\Collection<br />
+&nbsp; &nbsp; &nbsp;*/</span><br />
+&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getInfoArray<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #009900;">&#123;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">infoArray</span><span style="color: #339933;">;</span><br />
+&nbsp; &nbsp; <span style="color: #009900;">&#125;</span><br />
+<span style="color: #009900;">&#125;</span><br />
+&nbsp;Как Вы возможно видите, тут требуемая связь уже описана, но детальнее об этом позже.
+
+</p>
+<p>
+    Также опишем сущность для customer_info:
+<br /><br />
+    <span style="color: #000000; font-weight: bold;">namespace</span> QR1000\MainBundle\Entity<span style="color: #339933;">;</span><br />
+<br />
+use Doctrine\ORM\Mapping <span style="color: #b1b100;">as</span> ORM<span style="color: #339933;">;</span><br />
+<br />
+<span style="color: #009933; font-style: italic;">/**<br />
+&nbsp;* QR1000\MainBundle\Entity\CustomerInfo<br />
+&nbsp;*<br />
+&nbsp;* @ORM\Table(name=&quot;customer_info&quot;)<br />
+&nbsp;* @ORM\Entity(repositoryClass=&quot;QR1000\MainBundle\StoreBundle\Repository\CustomerInfoRepository&quot;)<br />
+&nbsp;*/</span><br />
+<span style="color: #000000; font-weight: bold;">class</span> CustomerInfo<br />
+<span style="color: #009900;">&#123;</span><br />
+&nbsp; &nbsp; <span style="color: #009933; font-style: italic;">/**<br />
+&nbsp; &nbsp; &nbsp;* @var integer $id<br />
+&nbsp; &nbsp; &nbsp;*<br />
+&nbsp; &nbsp; &nbsp;* @ORM\Column(name=&quot;id&quot;, type=&quot;integer&quot;, nullable=false)<br />
+&nbsp; &nbsp; &nbsp;* @ORM\Id<br />
+&nbsp; &nbsp; &nbsp;* @ORM\GeneratedValue(strategy=&quot;IDENTITY&quot;)<br />
+&nbsp; &nbsp; &nbsp;*/</span><br />
+&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$id</span><span style="color: #339933;">;</span><br />
+<span style="color: #339933;">.</span><br />
+<span style="color: #339933;">.</span><br />
+<span style="color: #339933;">.</span><br />
+&nbsp; &nbsp; <span style="color: #009933; font-style: italic;">/**<br />
+&nbsp; &nbsp; &nbsp;*<br />
+&nbsp; &nbsp; &nbsp;* @ORM\ManyToOne(targetEntity=&quot;Customer&quot;, inversedBy=&quot;infoArray&quot;)<br />
+&nbsp; &nbsp; &nbsp;* @ORM\JoinColumn(name=&quot;customer_id&quot;, referencedColumnName=&quot;id&quot;)<br />
+&nbsp; &nbsp; &nbsp;*/</span><br />
+&nbsp; &nbsp; protected <span style="color: #000088;">$customer</span><span style="color: #339933;">;</span><br />
+<span style="color: #339933;">.</span><br />
+<span style="color: #339933;">.</span><br />
+<span style="color: #339933;">.</span><br />
+<br />
+&nbsp; &nbsp; <span style="color: #009933; font-style: italic;">/**<br />
+&nbsp; &nbsp; &nbsp;* Set customer<br />
+&nbsp; &nbsp; &nbsp;*<br />
+&nbsp; &nbsp; &nbsp;* @param QR1000\MainBundle\Entity\Customer $customer<br />
+&nbsp; &nbsp; &nbsp;*/</span><br />
+&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setCustomer<span style="color: #009900;">&#40;</span>\QR1000\MainBundle\Entity\Customer <span style="color: #000088;">$customer</span><span style="color: #009900;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #009900;">&#123;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">customer</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$customer</span><span style="color: #339933;">;</span><br />
+&nbsp; &nbsp; <span style="color: #009900;">&#125;</span><br />
+<br />
+&nbsp; &nbsp; <span style="color: #009933; font-style: italic;">/**<br />
+&nbsp; &nbsp; &nbsp;* Get customer<br />
+&nbsp; &nbsp; &nbsp;*<br />
+&nbsp; &nbsp; &nbsp;* @return QR1000\MainBundle\Entity\Customer<br />
+&nbsp; &nbsp; &nbsp;*/</span><br />
+&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getCustomer<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #009900;">&#123;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">customer</span><span style="color: #339933;">;</span><br />
+&nbsp; &nbsp; <span style="color: #009900;">&#125;</span><br />
+<span style="color: #009900;">&#125;</span><br />
+&nbsp;Тут также уже всё описано.
+</p><p>
+Кстати, все геттеры/сеттеры не пишутся в ручную, а генерируются автоматически, с помощью одного из удобных консольных инструментов, а именно командой:
+
+<code>sudo php app/console doctrine:generate:entities QR1000</code>
+</p>
+
+<p>
+
+    Теперь непосредственно к тому, как тут всё работает.<br />
+    Для сущности Customer мы добавляем свойство infoArray, которое будет содержать массив элементов CustomerInfo. В его аннотации описан тип связи, условие и источник данных:<br />
+    <code>
+    @ORM\OneToMany(targetEntity="CustomerInfo", mappedBy="customer", cascade={"all"}, orphanRemoval=true)
+    </code>
+
+        <div class="left_100">
+    Тут:<br />
+        </div>
+    <b>targetEntity</b> — название класса содержащего n-элементов.<br />
+    <b>mappedBy</b> — название класса содержащего 1-элемент, обратите внимание, название начинается с маленькой буквы..<br />
+    <b>cascade</b> — тип действия при удалении родительского элемента. В данном случае будут автоматически удалены все дочерние.
+    </p>
+    <p>
+    В конструкторе для Customer добавляем строку:<br />
+    <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">infoArray</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> ArrayCollection<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>    <br />
+    для инициализации массива хранящего найденные описания.
+</p>
+
+<p>
+    Для сущности CustomerInfo связь с родительской сущностью описывается уже двумя строчками в аннотации:
+    <br />
+    <code>@ORM\ManyToOne(targetEntity="Customer", inversedBy="infoArray")<br />
+    &nbsp; @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+    </code>
+        <div class="left_100">
+    Тут:<br />
+        </div>
+    <b>targetEntity</b> — название класса родительской сущности (уже с большой буквы).<br />
+    <b>inversedBy</b> — название свойства родительского класса, в котором хранятся найденные экземпляры описаний.<br />
+    <b>name</b> — имя поля описания, по которому находятся связанные объекты.<br />
+    <b>referencedColumnName</b> — имя поля в родительской сущности, по которому находятся связанные объекты.<br />
+</p>
+
+<p>
+    Вот собственно и всё, теперь, получив из ORM экземпляр сущности Customer:
+    <br /><br />
+    <span style="color: #000088;">$customer</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$em</span> <span style="color: #339933;">-&gt;</span> <span style="color: #004000;">getRepository</span><span style="color: #009900;">&#40;</span> <span style="color: #0000ff;">&quot;QR1000MainBundle:Customer&quot;</span> <span style="color: #009900;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #339933;">-&gt;</span> <span style="color: #004000;">findOneById</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$customerID</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>    <br /><br />
+
+    и передав его в шаблон:
+    <br /><br />
+    <span style="color: #000088;">$this</span> <span style="color: #339933;">-&gt;</span> <span style="color: #004000;">render</span><span style="color: #009900;">&#40;</span> <span style="color: #0000ff;">&quot;QR1000MainBundle::customer.html.twig&quot;</span><span style="color: #339933;">,</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span> <span style="color: #0000ff;">&quot;customer&quot;</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$customer</span> <span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>    <br /><br />
+
+    мы можем обращаться к его массиву infoArray с использованием такого синтаксиса:
+    <br /><br />
+    <span style="color: #009900;">&#123;</span><span style="color: #339933;">%</span> <span style="color: #b1b100;">for</span> descr in customer<span style="color: #339933;">.</span>infoArray <span style="color: #339933;">%</span><span style="color: #009900;">&#125;</span>    <br /><br /><br />
+
+    А в РНР коде, это тоже свойство для Customer:<br />
+    &nbsp; &nbsp; <span style="color: #000088;">$descriptions</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$customer</span> <span style="color: #339933;">-&gt;</span> <span style="color: #004000;">getInfoArray</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span><br />
+&nbsp; &nbsp; <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span> <span style="color: #000088;">$descriptions</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$descr</span> <span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #339933;">...</span><br />
+&nbsp; &nbsp; <span style="color: #009900;">&#125;</span><br />
+&nbsp; &nbsp; 
+</p>
+<p>
+Это конечно не полное руководство, но как обещано, описал только неочевидные моменты.<br />
+Надеюсь кому-нибудь пригодится.
+</p>
+
+<br />
+<br />
+<h3><p>Успешных проектов!</p></h3>
+
+
+    <div id='mainTextSubpost' class='mainTextSubpost'>
+
+
+
+
+        <div class="left_100">
+            <p>
+                                <span class='sign'>Павел Осипов<br/>
+                    2012.09.23                </span>
+            </p>
+        </div>
+                <br/><br/>
+        <ins><span style="float: right;position: relative;left: -310px;"><b>
+            <img src="/engine/images/top_sign_sm.png" alt="" style="border: 0px;"
+            />&nbsp;&nbsp;<a href="#void()" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });return false;"
+                    >Наверх</a></b>
+        </span><br/><br/></ins>
+        
+    </div>
+  </div>
+</div>
+
+
+
+<div class='mainNewsDiv'>
+    
+
+    <table width='100%' style='background-color:#f4f4f4;'>
+    <tr>
+        <td class='t_tl'></td>
+        <td class='t_tc'></td>
+    </tr>
+    <tr>
+    <td class='t_ml'></td>
+    <td class='t_mc' align='left'>
+        <div id='news_block' class='opened_block newsMainTable'>
+        <p>Все категории</p>
+        <br/>
+            <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Книги, о которых приятно вспомнить после прочтения">
+    <a class="cloudEl cloudEl3" href="/books/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Книги</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Рооолики :)">
+    <a class="cloudEl cloudEl3" href="/roller/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Ролики</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="не-Полный список моих публикаций, либо просто ссылка на издание, либо вся статья в PDF">
+    <a class="cloudEl cloudEl3" href="/my_articles/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Публикации</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Сайты, в создании/поддержке которых я принимал участие, и о которых хочется что-то сказать">
+    <a class="cloudEl cloudEl3" href="/my_sites/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Мои сайты</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Информация вне определённой категории">
+    <a class="cloudEl cloudEl3" href="/stuff/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Разное</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Интересные вещи и рецепты связанные с PHP">
+    <a class="cloudEl cloudEl3" href="/php/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />PHP</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Если есть, что интересного о музыке, пишу сюда.">
+    <a class="cloudEl cloudEl3" href="/music/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Музыка</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="О семантической паутине и будущем развития Internet">
+    <a class="cloudEl cloudEl3" href="/semantic_web/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Semantic WEB</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Автоматизация некоторых рутинных операций в консоли и оффисе">
+    <a class="cloudEl cloudEl3" href="/pc_goodies/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Автоматизация рутинных операций</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Неочевидные вещи о PHP фреймворке Symfony2, которые потребовали времени на нахождение решения">
+    <a class="cloudEl cloudEl3" href="/symfony2/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Symfony2</a>
+   </span>
+    
+    </div>
+
+
+    <div id='fadback_block' class='closed_block newsMainTable'>
+        <div class='friend_link'>
+            <a href='http://iti.rtu.lv/'>Институт Информационных Технологий</a>
+        </div>
+        <div class='friend_link'>
+            <a href='http://www.tsi.lv' class='friend_link'>Институт Транспорта и Связи</a><br/>
+        </div>
+        <div class='friend_link'>
+            <a href='http://habrahabr.ru/users/pavel_osipov/' class='friend_link'>Я на Хабре</a><br/>
+        </div>
+    </div>
+    </td>
+
+    </tr>
+    <tr>
+        <td class='t_bl'></td>
+        <td class='t_bc'></td>
+    </tr>
+    </table>
+    
+</div>
+<a href="/semantic_web/" id="semanticWebImgHolder">
+    <div class="semanticWebImg" title="Семантическая паутинка"></div>
+</a>
+
+<div style="width: 100%;">
+    
+    <div id="rss_link_holder">
+        <a href="/engine/feed.xml">
+            <img src="/engine/images/1300800514_rss2_8-17.png"
+                 title="Получай извещение о появлении новостей на сайте"
+                 alt="Подписаться на RSS канал с извещением о появлении новостей на сайте" style="border: 0px;"
+            />
+        </a>
+        <h3>Внимание!</h3>
+        Теперь за обновлениями сайта можно следить подписавшись на RSS ленту!
+        <br/><br/>
+    </div>
+
+</div>
+
+
+<div class='w3'>
+    <p>
+            </p>
+</div>
+
+
+<div class='footer custom_hr'>
+    <div style="position: relative;top: -64px;">
+        <a href="/engine/feed.xml">
+            <img
+                    src="/engine/images/1300800514_rss2_8-17.png"
+                    style="float: left;border:0px"
+                    title="RSS feed"
+                    alt="RSS feed"
+            />
+        </a>
+    </div>
+
+
+    <div style="position: relative;top: -64px;">
+        <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#119;&#119;&#46;&#111;&#115;&#105;&#112;&#111;&#118;&#46;&#108;&#118;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;'
+        ><img src="/engine/images/1300137871_email_upload1.png" style="float: left;border:0px"
+              title="Есть что сказать? Пишите мне на электропочту" alt="Есть что сказать? Пишите мне на электропочту"/></a>
+    </div>
+    <br/>
+    Павел Осипов &copy; 2009 - 2019
+    <a href="https://plus.google.com/u/0/102649742378290957378?rel=author">Google+</a>
+</div>
+<div class='footDiv'>
+
+
+</div>
+
+
+</body>
+</html>

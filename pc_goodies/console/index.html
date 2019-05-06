@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name='apple-mobile-web-app-capable' content='yes'/>
+    <meta name='mobile-web-app-capable' content='yes'>
+    <meta name='HandheldFriendly' content='true'/>
+    <meta name='viewport' content='width=device-width, user-scalable=no'/>
+
+    <link rel='SHORTCUT ICON' href='/engine/images/favicon.ico'/>
+    <title id='title'>Использование GraphicsMagic для пакетного изменения размеров изображений</title>
+
+    <link rel="stylesheet" href="/engine/style.css?v=3" type="text/css"/>
+    <link rel="stylesheet" href="/engine/css/menu.css?v=1" type="text/css"/>
+
+    <meta name="description" content="Пара строк консольных комманд, могущих сэкономить время и нервы"/>
+    <meta name="keywords" content="Старые подшипники, подшипы, ABEC, RollerBlade, RX100"/>
+
+    <script type="text/javascript"
+            src="/engine/js/mootools/mootools-1.2.4-core_and_more.js"></script>
+    <script type="text/javascript" src="/engine/js/engine.js"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Quantico|Poiret+One|Bad+Script&amp;subset=latin,cyrillic'
+          rel='stylesheet' type='text/css'/>
+
+                <script type="text/javascript"
+                    src="/engine/js/highslide/highslide-full.packed.js"></script>
+            <link rel="stylesheet" type="text/css" href="/engine/js/highslide/highslide.css"/>
+            <script type="text/javascript">
+                hs.graphicsDir = '/engine/js/highslide/graphics/';
+            </script>
+                <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19813451-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+
+<body class="bg" id="body">
+
+
+<div class='headDiv'>
+    <div id="animate-area">
+        <div class='headImg'>
+            <a href='/' title='На главную'><img
+                        alt='На главную' class="logo_image"
+                        src='/engine/images/top_image.png'
+                /></a>
+        </div>
+
+        <!--        <div class='headPhrase'>-->
+        <!--            <sup>Персональный сайт Павла Осипова</sup>-->
+        <!--        </div>-->
+
+        <div style='float: right;'>
+            <!--menu-->
+            
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<!--            https://www.w3schools.com/howto/howto_js_off-canvas.asp-->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="topnav" id="myTopnav">
+    <a href="/my_articles/"
+       title="Не-полный список моих публикаций, либо просто ссылка на издание, либо вся статья в PDF">Публикации</a>
+    <a href="/php/" title="Интересные вещи и рецепты связанные с PHP">PHP</a>
+    <a href="/books/" class="active" title="Книги, о которых приятно вспомнить после прочтения">Книги</a>
+    <a href="#about" onclick="toggleNav()" id="other_categories" title="Другие интересные разделы">Другие разделы 👇</a>
+    <a href="javascript:void(0);" class="icon" onclick="togglemenu()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<style>
+
+</style>
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function togglemenu() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+
+<!-- The overlay -->
+<div id="myNav" class="overlay">
+
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <!-- Overlay content -->
+    <div class="overlay-content" id="overlay-content">
+        <a href="/roller/" title="Рооолики :)">Ролики</a>
+        <a href="/my_sites/"
+           title="Сайты, в создании/поддержке которых я принимал участие, и о которых хочется что-то сказать">Мои
+            сайты</a>
+        <a href="/stuff/" title="Информация без определённой категории">Разное</a>
+        <a href="/music/" title="Если есть, что интересного о музыке, пишу сюда.">Музыка</a>
+        <a href="/semantic_web/" title="О семантической паутине и будущем развития Internet">Semantic WEB</a>
+        <a href="/pc_goodies/" title="Автоматизация некоторых рутинных операций в консоли и оффисе">Автоматизация
+            рутинных операций</a>
+        <a href="/symfony2/"
+           title="Неочевидные вещи о PHP фреймворке Symfony2, которые потребовали времени на нахождение решения">Symfony2</a>
+    </div>
+
+</div>
+<script>
+    var navOpened = false;
+
+    function toggleNav() {
+        if (navOpened) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    }
+
+    /* Open */
+    function openNav() {
+        navOpened = true;
+        var item = document.getElementById("myNav");
+        item.style.height = "100%";
+        item.style.width = "100%";
+        document.getElementById("overlay-content").style.display = "inline-block";
+    }
+
+    /* Close */
+    function closeNav() {
+        navOpened = false;
+        var item = document.getElementById("myNav");
+        item.style.height = "0%";
+        item.style.width = "0%";
+        document.getElementById("overlay-content").style.display = "none";
+    }
+</script>        </div>
+    </div>
+</div>
+        <ins>
+            <span class="left_100 top_link_holder">
+                <img src="/engine/images/top_sign_sm.png" alt="" style="border: 0px;"/>
+                <b>&nbsp;&nbsp;<a href="../#pc_goodies">Назад в „Автоматизация рутинных операций“</a></b>&nbsp;&nbsp;
+            </span>
+        </ins>
+        
+
+<div class='mainDiv'>
+
+    <div class='mainTextDiv'>
+
+        <h1 title="Под Ubuntu">
+            Использование GraphicsMagic для пакетного изменения размеров изображений
+        </h1>
+
+        <div id='mainTextSubpost' class='mainTextSubpost'>
+            <p>
+
+            <div class="left_100">
+                Как — то раз понадобилось мне изменить размер для большого количества изображений в папке. Предположим,
+                что это была большая куча фотографий 20 мегапиксельных, по 8 мегабайт весом каждая. С отчётом о поездке
+                в дальние края. И захотелось выложить их мне на сайт, а для этого надобно их ужать, да
+                оптимизировать.<br/>
+                Конечно пару / десяток фотографий можно и руками, можно в Фотошопе, можно ещё поискать программы, да
+                скрипты под это дело заточенные.. Но, это ведь не так интересно, как написать пару строк в консоли и всё
+                само чтобы обработалось красиво. Тут тебе и удовольствие от сделанного, и опыт который в будущем
+                обязательно пригодится и материал для сайта, добрым людям в помощь.<br/>
+                <br/>
+
+
+                <img src="/articles/pc_goodies/console/200px-GraphicsMagick-Logo.png"
+                     alt="GraphicsMagick логотип" align="right"/>
+                Один важный момент, всё происходит не в OS Windows, a в OS Ubuntu. <br/>
+
+                Устанавливаем отличный пакет для работы с изображениями <a href='http://www.graphicsmagick.org/'>GraphicsMagick</a>.
+                Именно GraphicsMagick а не <a href='http://www.imagemagick.org'>ImageMagick</a>. Почему? Просто это
+                более продвинутый форк.
+
+
+                <br/><br/>
+                Кстати, под Windows он тоже устанавливается, так - что при небольшом шаманстве этот же подход можно и
+                там использовать.
+                <br/><br/>
+
+                <b>После такой долгой прелюдии, всего-то строка кода:</b>
+
+
+                <code class="left_100">find <span style="color: #339933;">-</span>name <span style="color: #0000ff;">&quot;*.JPG&quot;</span> <span style="color: #339933;">|</span> <span style="color: #b1b100;">while</span> read f<span style="color: #339933;">;</span> <span style="color: #b1b100;">do</span> gm <span style="color: #339933;">-</span>convert <span style="color: #339933;">-</span>scale 800 <span style="color: #000088;">$f</span> thumbs<span style="color: #339933;">/</span><span style="color: #000088;">$f</span><span style="color: #339933;">;</span> done</code>
+            </div>
+
+            <div class="left_100">
+                Тут:<br/>
+                <i>JPG</i> — расширение обрабатываемых файлов.<br/>
+                <i>800</i> — Целевая ширина конвертации.<br/>
+                <i>thumbs/</i> — Папка, в которую будут складываться уменьшенные изображения.<br/>
+                <i>done</i> — Признак конца операции.<br/>
+            </div>
+
+            В итоге, в папке thumbs имеем уменьшенные копии фотографий, с теми же названиями.
+            <br/><br/>
+            </p>
+            <p>
+                В случае, если название нужно немного изменить — добавить постфикс _sm для уменьшенных превьюшек, можно
+                написать так:
+                <code>find <span style="color: #339933;">-</span>name <span style="color: #0000ff;">&quot;*.JPG&quot;</span> <span style="color: #339933;">|</span> <span style="color: #b1b100;">while</span> read f<span style="color: #339933;">;</span> <span style="color: #b1b100;">do</span> gm <span style="color: #339933;">-</span>convert <span style="color: #339933;">-</span>scale <span style="color: #cc66cc;">200</span> <span style="color: #0000ff;">&quot;<span style="color: #006699; font-weight: bold;">$f</span>&quot;</span> <span style="color: #0000ff;">&quot;thumbs/${f%.*}_sm.jpg&quot;</span><span style="color: #339933;">;</span> done                    <br/><br/>
+                </code>
+            </p>
+
+            <p>
+                Дополнительно может понадобится изменить регистр букв в именах всех файлов, так-как некоторые особо
+                продвинутые фотоаппараты упорно ставят расширение в верхнем регистре.<br/>
+                В этом случае пишем:
+                <code><a href="http://www.php.net/rename"><span style="color: #990000;">rename</span></a> <span style="color: #0000ff;">'y/A-Z/a-z/'</span> <span style="color: #339933;">*</span></code>
+                <br/><br/><br/>
+            </p>
+
+            <p>
+                Ну и если очень хочется добавить водяные знаки, чтобы никто просто так не мог фотографии скачать с
+                Вашего сайта и выдать за свои, то это сделать тоже не сложно:
+                <code>composite <span style="color: #339933;">-</span>dissolve <span style="color: #cc66cc;">55</span> <span style="color: #339933;">-</span>gravity SouthEast &nbsp;watermark_image<span style="color: #339933;">.</span>png target_image<span style="color: #339933;">.</span>jpg result_image<span style="color: #339933;">.</span>jpg</code>
+                Или в цикле:
+                <code>
+                    find <span style="color: #339933;">-</span>name <span style="color: #0000ff;">&quot;*.JPG&quot;</span> <span style="color: #339933;">|</span> <span style="color: #b1b100;">while</span> read f<span style="color: #339933;">;</span> <span style="color: #b1b100;">do</span> composite <span style="color: #339933;">-</span>dissolve <span style="color: #cc66cc;">55</span> <span style="color: #339933;">-</span>gravity SouthEast &nbsp;watermark<span style="color: #339933;">.</span>png <span style="color: #0000ff;">&quot;<span style="color: #006699; font-weight: bold;">$f</span>&quot;</span> <span style="color: #0000ff;">&quot;wat/${f%.*}&quot;</span><span style="color: #339933;">;</span> done                </code>
+
+
+            <div class="left_100">
+                Тут:<br/>
+                <i>55</i> — Степень прозрачности накладываемого изображения.<br/>
+                <i>SouthEast</i> — Константа определяющая положение накладываемого изображения. Может принимать одно из
+                следующих значений:
+                <br/>NorthWest, North, NorthEast, West, Center, East, SouthWest, South, или SouthEast.<br/>
+                <i>watermark_image.png</i> —Путь до файла накладываемого изображения.<br/>
+                <i>target_image.jpg</i> — Путь до целевого файла с фотографией.<br/>
+                <i>result_image.jpg</i> — Путь и название результирующего файла.<br/>
+            </div>
+
+            </p>
+
+            <p>
+                Ещё:<br/>
+                <code>
+                    gm mogrify <span style="color: #339933;">-</span>resize 120x120<span style="color: #339933;">!</span> imagename<span style="color: #339933;">.</span>jpg                </code>
+                изменит размер изображения на 120x120 не взирая на соблюдение пропорций.
+                <br/>
+                Или в цикле:<br/>
+                (<i>
+                    <ins style="color:red;">ВНИМАНИЕ!</ins>
+                    Этот скрипт
+                    <ins style="color:red;">ПАРЕЗАПИШЕТ</ins>
+                    существующие фотографии их уменьшенными копиями, так-что сначала скопируйте изображения которые
+                    будете конвертировать в отдельную папку!)</i>
+                <code>find <span style="color: #339933;">-</span>name <span style="color: #0000ff;">&quot;*.JPG&quot;</span> <span style="color: #339933;">|</span> <span style="color: #b1b100;">while</span> read f<span style="color: #339933;">;</span> <span style="color: #b1b100;">do</span> gm mogrify <span style="color: #339933;">-</span>resize 120x120<span style="color: #339933;">!</span> <span style="color: #0000ff;">&quot;<span style="color: #006699; font-weight: bold;">$f</span>&quot;</span><span style="color: #339933;">;</span> done</code>
+            </p>
+
+
+            <p>
+                Если задача состоит в том, чтобы привести все изображения к одной ширине, вне зависимости от их
+                ориентации, то подойдёт такой код:
+                <code>gm <span style="color: #339933;">-</span>convert <span style="color: #339933;">-</span>geometry <span style="color: #0000ff;">'650^x436^'</span> target_image<span style="color: #339933;">.</span>jpg result_image<span style="color: #339933;">.</span>jpg</code>
+                Тут: '650^x436^' - максимальные ширина или высота,
+                символ крышки ^ - признак того, что данное значение будт использоваться в качестве максимального.
+                Или в цикле:<br/>
+                <code>find <span style="color: #339933;">-</span>name <span style="color: #0000ff;">&quot;*.JPG&quot;</span> <span style="color: #339933;">|</span> <span style="color: #b1b100;">while</span> read f<span style="color: #339933;">;</span> <span style="color: #b1b100;">do</span> gm <span style="color: #339933;">-</span>convert <span style="color: #339933;">-</span>geometry <span style="color: #0000ff;">&quot;650^x436^&quot;</span> <span style="color: #0000ff;">&quot;<span style="color: #006699; font-weight: bold;">$f</span>&quot;</span> <span style="color: #0000ff;">&quot;thumbs/${f%.*}_sm.jpg&quot;</span><span style="color: #339933;">;</span> done</code>
+
+                Обработка 200 фотографий по 2.5Мб каждая заняла у меня около 4 минут.
+                <br/><br/>
+            </p>
+            <p>
+
+                Вот и всё!<br/>
+                Успешной, приятной и эффективной работы!
+
+                        <div class="left_100">
+            <p>
+                                <span class='sign'>Павел Осипов<br/>
+                    2011.07.19                </span>
+            </p>
+        </div>
+                <br/><br/>
+        <ins><span style="float: right;position: relative;left: -310px;"><b>
+            <img src="/engine/images/top_sign_sm.png" alt="" style="border: 0px;"
+            />&nbsp;&nbsp;<a href="#void()" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });return false;"
+                    >Наверх</a></b>
+        </span><br/><br/></ins>
+                    </p>
+
+        </div>
+
+
+        <br/><br/><br/><br/>
+    </div>
+</div>
+
+<div class='mainNewsDiv'>
+    
+
+    <table width='100%' style='background-color:#f4f4f4;'>
+    <tr>
+        <td class='t_tl'></td>
+        <td class='t_tc'></td>
+    </tr>
+    <tr>
+    <td class='t_ml'></td>
+    <td class='t_mc' align='left'>
+        <div id='news_block' class='opened_block newsMainTable'>
+        <p>Все категории</p>
+        <br/>
+            <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Книги, о которых приятно вспомнить после прочтения">
+    <a class="cloudEl cloudEl3" href="/books/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Книги</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Рооолики :)">
+    <a class="cloudEl cloudEl3" href="/roller/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Ролики</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="не-Полный список моих публикаций, либо просто ссылка на издание, либо вся статья в PDF">
+    <a class="cloudEl cloudEl3" href="/my_articles/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Публикации</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Сайты, в создании/поддержке которых я принимал участие, и о которых хочется что-то сказать">
+    <a class="cloudEl cloudEl3" href="/my_sites/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Мои сайты</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Информация вне определённой категории">
+    <a class="cloudEl cloudEl3" href="/stuff/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Разное</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Интересные вещи и рецепты связанные с PHP">
+    <a class="cloudEl cloudEl3" href="/php/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />PHP</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Если есть, что интересного о музыке, пишу сюда.">
+    <a class="cloudEl cloudEl3" href="/music/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Музыка</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="О семантической паутине и будущем развития Internet">
+    <a class="cloudEl cloudEl3" href="/semantic_web/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Semantic WEB</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Автоматизация некоторых рутинных операций в консоли и оффисе">
+    <a class="cloudEl cloudEl3" href="/pc_goodies/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Автоматизация рутинных операций</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Неочевидные вещи о PHP фреймворке Symfony2, которые потребовали времени на нахождение решения">
+    <a class="cloudEl cloudEl3" href="/symfony2/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Symfony2</a>
+   </span>
+    
+    </div>
+
+
+    <div id='fadback_block' class='closed_block newsMainTable'>
+        <div class='friend_link'>
+            <a href='http://iti.rtu.lv/'>Институт Информационных Технологий</a>
+        </div>
+        <div class='friend_link'>
+            <a href='http://www.tsi.lv' class='friend_link'>Институт Транспорта и Связи</a><br/>
+        </div>
+        <div class='friend_link'>
+            <a href='http://habrahabr.ru/users/pavel_osipov/' class='friend_link'>Я на Хабре</a><br/>
+        </div>
+    </div>
+    </td>
+
+    </tr>
+    <tr>
+        <td class='t_bl'></td>
+        <td class='t_bc'></td>
+    </tr>
+    </table>
+    
+</div>
+<a href="/semantic_web/" id="semanticWebImgHolder">
+    <div class="semanticWebImg" title="Семантическая паутинка"></div>
+</a>
+
+<div style="width: 100%;">
+    
+    <div id="rss_link_holder">
+        <a href="/engine/feed.xml">
+            <img src="/engine/images/1300800514_rss2_8-17.png"
+                 title="Получай извещение о появлении новостей на сайте"
+                 alt="Подписаться на RSS канал с извещением о появлении новостей на сайте" style="border: 0px;"
+            />
+        </a>
+        <h3>Внимание!</h3>
+        Теперь за обновлениями сайта можно следить подписавшись на RSS ленту!
+        <br/><br/>
+    </div>
+
+</div>
+
+
+<div class='w3'>
+    <p>
+            </p>
+</div>
+
+
+<div class='footer custom_hr'>
+    <div style="position: relative;top: -64px;">
+        <a href="/engine/feed.xml">
+            <img
+                    src="/engine/images/1300800514_rss2_8-17.png"
+                    style="float: left;border:0px"
+                    title="RSS feed"
+                    alt="RSS feed"
+            />
+        </a>
+    </div>
+
+
+    <div style="position: relative;top: -64px;">
+        <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#119;&#119;&#46;&#111;&#115;&#105;&#112;&#111;&#118;&#46;&#108;&#118;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;'
+        ><img src="/engine/images/1300137871_email_upload1.png" style="float: left;border:0px"
+              title="Есть что сказать? Пишите мне на электропочту" alt="Есть что сказать? Пишите мне на электропочту"/></a>
+    </div>
+    <br/>
+    Павел Осипов &copy; 2009 - 2019
+    <a href="https://plus.google.com/u/0/102649742378290957378?rel=author">Google+</a>
+</div>
+<div class='footDiv'>
+
+
+</div>
+
+
+</body>
+</html>

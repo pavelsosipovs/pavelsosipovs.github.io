@@ -1,0 +1,2042 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name='apple-mobile-web-app-capable' content='yes'/>
+    <meta name='mobile-web-app-capable' content='yes'>
+    <meta name='HandheldFriendly' content='true'/>
+    <meta name='viewport' content='width=device-width, user-scalable=no'/>
+
+    <link rel='SHORTCUT ICON' href='/engine/images/favicon.ico'/>
+    <title id='title'>USAGE OF ONTOLOGIES IN SYSTEMS OF DATA EXCHANGE </title>
+
+    <link rel="stylesheet" href="/engine/style.css?v=3" type="text/css"/>
+    <link rel="stylesheet" href="/engine/css/menu.css?v=1" type="text/css"/>
+
+    <meta name="description" content="Pavel Osipov, USAGE OF ONTOLOGIES IN SYSTEMS OF DATA EXCHANGE "/>
+    <meta name="keywords" content="Pavel Osipov, USAGE OF ONTOLOGIES IN SYSTEMS OF DATA EXCHANGE "/>
+
+    <script type="text/javascript"
+            src="/engine/js/mootools/mootools-1.2.4-core_and_more.js"></script>
+    <script type="text/javascript" src="/engine/js/engine.js"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Quantico|Poiret+One|Bad+Script&amp;subset=latin,cyrillic'
+          rel='stylesheet' type='text/css'/>
+
+                <script type="text/javascript"
+                    src="/engine/js/highslide/highslide-full.packed.js"></script>
+            <link rel="stylesheet" type="text/css" href="/engine/js/highslide/highslide.css"/>
+            <script type="text/javascript">
+                hs.graphicsDir = '/engine/js/highslide/graphics/';
+            </script>
+                <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19813451-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+
+<body class="bg" id="body">
+
+
+<div class='headDiv'>
+    <div id="animate-area">
+        <div class='headImg'>
+            <a href='/' title='На главную'><img
+                        alt='На главную' class="logo_image"
+                        src='/engine/images/top_image.png'
+                /></a>
+        </div>
+
+        <!--        <div class='headPhrase'>-->
+        <!--            <sup>Персональный сайт Павла Осипова</sup>-->
+        <!--        </div>-->
+
+        <div style='float: right;'>
+            <!--menu-->
+            
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<!--            https://www.w3schools.com/howto/howto_js_off-canvas.asp-->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="topnav" id="myTopnav">
+    <a href="/my_articles/"
+       title="Не-полный список моих публикаций, либо просто ссылка на издание, либо вся статья в PDF">Публикации</a>
+    <a href="/php/" title="Интересные вещи и рецепты связанные с PHP">PHP</a>
+    <a href="/books/" class="active" title="Книги, о которых приятно вспомнить после прочтения">Книги</a>
+    <a href="#about" onclick="toggleNav()" id="other_categories" title="Другие интересные разделы">Другие разделы 👇</a>
+    <a href="javascript:void(0);" class="icon" onclick="togglemenu()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<style>
+
+</style>
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function togglemenu() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+
+<!-- The overlay -->
+<div id="myNav" class="overlay">
+
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <!-- Overlay content -->
+    <div class="overlay-content" id="overlay-content">
+        <a href="/roller/" title="Рооолики :)">Ролики</a>
+        <a href="/my_sites/"
+           title="Сайты, в создании/поддержке которых я принимал участие, и о которых хочется что-то сказать">Мои
+            сайты</a>
+        <a href="/stuff/" title="Информация без определённой категории">Разное</a>
+        <a href="/music/" title="Если есть, что интересного о музыке, пишу сюда.">Музыка</a>
+        <a href="/semantic_web/" title="О семантической паутине и будущем развития Internet">Semantic WEB</a>
+        <a href="/pc_goodies/" title="Автоматизация некоторых рутинных операций в консоли и оффисе">Автоматизация
+            рутинных операций</a>
+        <a href="/symfony2/"
+           title="Неочевидные вещи о PHP фреймворке Symfony2, которые потребовали времени на нахождение решения">Symfony2</a>
+    </div>
+
+</div>
+<script>
+    var navOpened = false;
+
+    function toggleNav() {
+        if (navOpened) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    }
+
+    /* Open */
+    function openNav() {
+        navOpened = true;
+        var item = document.getElementById("myNav");
+        item.style.height = "100%";
+        item.style.width = "100%";
+        document.getElementById("overlay-content").style.display = "inline-block";
+    }
+
+    /* Close */
+    function closeNav() {
+        navOpened = false;
+        var item = document.getElementById("myNav");
+        item.style.height = "0%";
+        item.style.width = "0%";
+        document.getElementById("overlay-content").style.display = "none";
+    }
+</script>        </div>
+    </div>
+</div>
+        <ins>
+            <span class="left_100 top_link_holder">
+                <img src="/engine/images/top_sign_sm.png" alt="" style="border: 0px;"/>
+                <b>&nbsp;&nbsp;<a href="/my_articles/">Назад к списку статей</a></b>&nbsp;&nbsp;
+            </span>
+        </ins>
+        
+<div class='mainDiv'>
+    <div class='mainTextDiv'>
+
+        <!--        <h1 title="В них соответственно вложено больше всего труда">-->
+        <!--            Нектороый мои научные публикации.-->
+        <!--        </h1>-->
+        <!---->
+        <!---->
+        <!--        <div style="font-size: small">-->
+        <!--            <sup style="color: red">*</sup>-->
+        <!--            Пока только PDF`ки, будет время оформлю в виде HTML страниц-->
+        <!--        </div>-->
+        <!--        <br/>++++++++++-->
+
+        
+<link rel="stylesheet" href="/engine/css/ms_article.css" type="text/css"/>
+
+
+<div class="article">
+
+<div class="WordSection1">
+
+<h1 align=center style='text-align:center'><span style='font-size:11.0pt'>USAGE
+</span><span lang=RU style='font-size:11.0pt'>OF ONTOLOGIES IN SYSTEMS</span><span
+style='font-size:11.0pt'> OF DATA EXCHANGE</span></h1>
+
+<p class=MsoNormal align=center style='text-align:center'><b><span
+style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<h1 align=center style='text-align:center'><span style='font-size:11.0pt'>ONTOLO</span><span
+lang=LV style='font-size:11.0pt'>&#290;IJAS LIETO&#352;ANA DATU MAI&#325;U
+SISTEM&#256;S</span></h1>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoTitle style='margin:0in;margin-bottom:.0001pt;text-indent:0in'><span
+lang=LV style='font-size:11.0pt;font-family:"Times New Roman","serif";
+font-weight:normal'>P.Osipovs and A.Borisov</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:red'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b><i><span lang=LV
+style='font-size:9.0pt'>Keywords:<span style='color:red'> </span></span></i></b><b><i><span
+style='font-size:9.0pt'>Machine Learning</span></i></b><b><i><span lang=LV
+style='font-size:9.0pt'>, ontologies, semantic WEB, OWL, RDF, software agents, </span></i></b><b><i><span
+style='font-size:9.0pt'>Attribute Value Taxonomies</span></i></b></p>
+
+</div>
+
+<span style='font-size:11.0pt;font-family:"Times New Roman","serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div class=WordSection2>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=RU style='font-size:11.0pt'>&nbsp;</span></p>
+
+</div>
+
+<span lang=RU style='font-size:11.0pt;font-family:"Times New Roman","serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div class=WordSection3>
+
+<p class=MsoBodyText style='text-align:justify'><b><i><span style='font-size:
+9.0pt'>This paper describes the methods and techniques used to effectively
+extract knowledge from large volumes of heterogeneous data. Also look at
+methods to structure the raw data by the automatic classification using
+ontology.</span></i></b></p>
+
+<p class=MsoBodyText style='text-align:justify'><b><i><span style='font-size:
+9.0pt'>In the first part of the article the basic technologies to realize the
+Semantic WEB described. Much attention is paid to the ontology, as the major
+concepts that structure information on an unusually high level.</span></i></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><i><span style='font-size:
+9.0pt'>The second part examines AVT-DTL algorithm proposed by Jun Zhang, which
+allows automatically create classifiers according to the available raw,
+potentially incomplete data. The considered algorithm uses a new concept of
+floating levels of ontology and the results of the tests exceeds the best
+existing algorithms for creating classifiers.</span></i></b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b><span
+style='font-size:11.0pt'>Introduction</span></b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span style='font-size:11.0pt'>The
+complexity of the structure of the modern information society is constantly
+growing. In this regard, the requirements for effective processing algorithms
+also increase. General model of knowledge from raw data presented in Fig. 1.
+Recently the most popular trends in this area is Data Mining (DM), Knowledge
+Discovery in Databases (KDD) and Machine Learning (ML). They provide
+theoretical and methodological framework for studying, analyzing and
+understanding large amounts of data.</span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span style='font-size:11.0pt'>However,
+these methods are not enough if the structure of the data is so poorly suited
+for machine analysis, as historically to date on the Internet. Always there is
+a need to provide a convenient interface to access various data, provide an
+opportunity to consider them with a convenient point of view in such diverse
+areas as bio-informatics, e-commerce, etc.</span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span style='font-size:11.0pt'>To
+resolve this issue launched a global initiative of the restructuring of
+Internet data in order to transform it into the Semantic Web, which provides
+opportunities for efficient retrieval and analysis of data, both human and
+software agents. The most important part of the Semantic Web is the use of
+ontologies, which provide opportunities for presentation of some data in
+different points of view, on the needs and skills of their requests.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>The
+major drawback of the existing structure of the Internet is that it practically
+does not use standards for the presentation of data easier to understand the
+computer, and all information is intended primarily for human consumption. For
+example, in order to get time family doctor, just go to the clinic site and
+find it in the list of all practicing physicians. However, if it is just to
+make a man, the software agent in the automatic mode it is virtually impossible
+unless you build it, subject to a rigid structure of a specific site.</span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><span
+lang=RU style='font-size:11.0pt'><img width=198 height=241
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image001.gif"></span></p>
+
+<p class=MsoCaption><span style='font-size:11.0pt;font-weight:normal'>Picture</span><span
+style='font-size:11.0pt;font-weight:normal'> </span><span
+lang=RU style='font-size:11.0pt;font-weight:normal'>1</span><span lang=RU
+style='font-size:11.0pt'> </span><span style='font-size:11.0pt;font-weight:
+normal'>Knowledge</span><span style='font-size:11.0pt;font-weight:normal'> </span><span
+style='font-size:11.0pt;font-weight:normal'>distillation</span><span
+style='font-size:11.0pt;font-weight:normal'> </span><span style='font-size:
+11.0pt;font-weight:normal'>process</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=RU
+style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>To solve these problems using an <i>ontology</i>,
+describing any of the subject area in understandable terms for the machine and effective
+use of <i>mobile agents</i>.</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>Using this approach, in addition to the visible human
+data on each page, there are also ancillary data, allowing efficient use of
+data by software agents.</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>In turn, the ontology are part of a global vision of
+the Internet to a new level, called the <b>Semantic WEB</b> (SW) [1].</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=RU
+style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=RU
+style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>The
+most important concept of Semantic WEB</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>To
+achieve such a difficult goal as the global reorganization of the global
+network requires a set of interrelated technologies. Figure 2 provides the
+overall structure of the concepts of Semantic WEB. </span><span lang=RU
+style='font-size:11.0pt'>Below is a brief description of key technologies.</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><span
+lang=RU style='font-size:11.0pt'><img width=304 height=258
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image002.jpg"></span></p>
+
+<p class=MsoCaption><span style='font-size:11.0pt;font-weight:normal'>Picture </span><span
+style='font-size:11.0pt;font-weight:normal'>2</span><span lang=RU
+style='font-size:11.0pt'> </span><span style='font-size:11.0pt;font-weight:
+normal'>Stack of semantic web concepts</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><i><span lang=RU
+style='font-size:11.0pt'>Semantic WEB</span></i></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>The
+concept of the semantic web is central to the modern understanding of evolution
+of the Internet. It is believed that the future data network will be presented
+in the usual form of pages, as well as metadata about the same proportion that
+will allow machines to use them for logical conclusions realizing the benefits
+from the use of methods of ML. Everywhere will be used <i>Uniform Resource
+Identifiers</i> (URI) and ontology.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=RU style='font-size:
+11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>However, not all so rosy, there are doubts about the
+full realization of the semantic web. Key Points for the benefit of doubt in
+the possibility of creating an efficient semantic web:</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>The human factor [2], people can
+lie, lazy and add a meta description, use incomplete or simply incorrect
+metadata. As solution of this problem, automated tools to create and edit
+metadata can be used.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span lang=RU style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Unnecessary duplication of
+information, where each document must have a full description of both the man
+and for the machine. </span><span lang=RU style='font-size:11.0pt'>This is
+partly solved by the introduction of <i>microformats</i> [3].</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=RU style='font-size:
+11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>In
+addition to the metadata itself, the most important part of the SW is the <i>semantic
+Web services</i>. They are a source of data for agents, semantic web,
+originally designed to interact with the machines have a means of advertising
+their opportunities.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><i><span lang=RU
+style='font-size:11.0pt'>URI</span></i></b><span lang=RU style='font-size:11.0pt'>
+(Uniform Resource Identifier)</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=LV style='font-size:
+11.0pt'>URI is a uniform resource identifier of any. May indicate both the
+virtual and the physical object. A unique character string overall, common
+structure which is represented in Figure 3.</span><span lang=LV
+style='font-size:11.0pt'> </span><span style='font-size:11.0pt'>Currently the
+best-known URI for today is a URL, which is the identifier of the resource on
+the Internet and additionally contains information about the whereabouts of the
+addressed resource.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><span
+lang=RU style='font-size:11.0pt'><img width=316 height=46
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image003.gif"></span></p>
+
+<p class=MsoCaption><span style='font-size:11.0pt;font-weight:normal'>Picture </span><span
+style='font-size:11.0pt;font-weight:normal'>3</span><span lang=RU
+style='font-size:11.0pt'> </span><span style='font-size:11.0pt;font-weight:
+normal'>Base URI format</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><i><span style='font-size:
+11.0pt'>Ontologies</span></i></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><i><span style='font-size:
+11.0pt'>&nbsp;</span></i></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>For
+the area under the Machine Learning ontology means a structure, conceptual
+framework for describing (formalizing) the values of some elements of the <i>subject
+domain</i> (SD). Ontology consists of a set of terms and rules describing their
+relationship.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=RU style='font-size:
+11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Usually,
+ontologies are built from <i>instances</i>, the <i>concepts of attributes</i>
+and <i>relationships</i>.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span lang=RU style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>Instance</span></i><span
+style='font-size:11.0pt'>    -           elements of the lowest level. The main
+purpose of ontology is precisely the classification of specimens, and although
+their presence in the ontology is not required, but usually they are present. </span><b><span
+lang=RU style='font-size:11.0pt'>Example</span></b><span lang=RU
+style='font-size:11.0pt'>: the word, the breed of animals, stars.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>Concepts</span></i><span
+style='font-size:11.0pt'>   -           abstract sets, collections of objects. </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify'><b><span
+style='font-size:11.0pt'>Example</span></b><span style='font-size:11.0pt'>: The
+concept of &quot;stars&quot; embedded the concept of &quot;sun&quot;. What is
+the &quot;sun&quot;, or the concept of nested instance (luminary) - depends on
+the ontology.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify'><span
+style='font-size:11.0pt'>The concept of &quot;luminary&quot;, a copy of
+&quot;sun&quot;.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>Attributes</span></i><span
+style='font-size:11.0pt'>   -           Each object can have an optional set of
+attributes allowing to store specific information. </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify'><b><span
+style='font-size:11.0pt'>Example</span></b><span style='font-size:11.0pt'>: object
+&quot;sun&quot; has attributes such as:</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:-.25in'><span
+lang=RU style='font-size:9.0pt;font-family:Wingdings'>&Oslash;<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><i><span lang=RU
+style='font-size:11.0pt'>Type: </span></i><span lang=RU style='font-size:11.0pt'>yellow
+dwarf</span><span lang=RU style='font-size:11.0pt'>;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:-.25in'><span
+lang=RU style='font-size:9.0pt;font-family:Wingdings'>&Oslash;<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><i><span
+style='font-size:11.0pt'>Mass</span></i><span lang=RU style='font-size:11.0pt'>:
+1.989 · 10<sup>30</sup> </span><span style='font-size:11.0pt'>kg</span><span
+lang=RU style='font-size:11.0pt'>;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:-.25in'><span
+lang=RU style='font-size:9.0pt;font-family:Wingdings'>&Oslash;<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><i><span
+style='font-size:11.0pt'>Radius</span></i><span lang=RU style='font-size:11.0pt'>:
+695 990 </span><span style='font-size:11.0pt'>km</span><span lang=RU
+style='font-size:11.0pt'>.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>Relationships</span></i><span
+style='font-size:11.0pt'>        -           allow you to specify relationships
+between objects of the ontology. </span></p>
+
+<p class=MsoNormal style='margin-left:28.35pt;text-align:justify'><span
+style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>So
+- as between different ontologies is possible to establish points of
+intersection, the use of ontologies allows us to look at one SD from different
+points of view and depending on the task to use different levels of detail
+considered SD. The concept of levels of detail of the ontology is a key, for
+example, to refer to the color signal lights sometimes simply specify a &quot;<i>green</i>&quot;,
+while the description of color dyeing machines may not be sufficient even for
+such a detailed description as &quot;<i>dark green, similar in tone to the
+needles</i>&quot;.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Consider
+the general structure of ontologies usages.</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><span
+lang=RU style='font-size:11.0pt'><img width=226 height=136
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image004.gif"></span></p>
+
+<p class=MsoCaption><span style='font-size:11.0pt;font-weight:normal'>Picture </span><span
+style='font-size:11.0pt;font-weight:normal'>4</span><span lang=RU
+style='font-size:11.0pt'> </span><span style='font-size:11.0pt;font-weight:
+normal'>Part of the possible ontologies addresses</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>In
+the case of the ontology shown in Figure 4, in order to send a letter to an
+American university, it is sufficient to specify its name, a software agent
+finds its own address on the basis of a standard address information from the
+university, if you want to send a letter to a specific department, then with site
+will list all the faculties and the correct, and from the site required the
+faculty take the address, then using the above program will determine the
+format of the ontology addresses passed in the United States.</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>The computer does not understand all the information
+in the full sense of the word, but the use of ontologies allows him much more
+efficiently and intelligently use the available data.</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Of
+course, many questions remain, for example, as in the beginning of the agent
+can find the desired site of the university? However, this is already developed
+tools. For example, an ontology language Network Services (Web Services
+Ontology Language, OWL-S [4]) which allows services to advertise their
+capabilities, services.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>Fig. 5 shows a variant of the division of ontologies
+on the levels of formalization measure of how much of the ontological accuracy
+of each method.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify;page-break-after:avoid'><span
+lang=RU><img width=316 height=113
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image005.gif"></span></p>
+
+<p class=MsoCaption style='text-align:justify'><span style='font-size:11.0pt;
+font-weight:normal'>Picture </span><span
+style='font-size:11.0pt;font-weight:normal'>5</span><span lang=RU
+style='font-size:11.0pt;font-weight:normal'> </span><span style='font-size:
+11.0pt;font-weight:normal'>Hierarchy taxonomies</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Under
+the ontological accuracy of the ontology is understood to distinguish between
+shades of meaning.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'> </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>Catalog</span></i><span
+style='font-size:11.0pt'> – contains a set of normalized terms without any
+hierarchical structure.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>Glossary </span></i><span
+style='font-size:11.0pt'>– all terms are sorted in alphabetical order of
+natural language.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>Taxonomy </span></i><span
+style='font-size:11.0pt'>– partially ordered collection of concepts (taxons)
+divides the subject domain from general to specific concepts.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>Axiomatised taxonomy</span></i><span
+style='font-size:11.0pt'> –   taxonomies subset contains certain axioms in a
+formal language.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>Context libraries / axiomatised
+ontologies </span></i><span style='font-size:11.0pt'>– are interrelated set of
+axiomatised taxonomies. Is the intersection of several contexts, or the
+inclusion of one context to another.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>Taxonomies</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Taxonomies
+are one of the options for implementing ontologies. With the help of taxonomy
+may define the classes to which objects are divided into a certain subject
+area, and then, what relations exist between these classes. Unlike ontologies,
+taxonomies task is clearly defined within the hierarchical classification of
+objects.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>Attribute
+Value Taxonomies (AVT)</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>An
+important example of the concept of taxonomy in Machine Learning is the concept
+<i>Attribute Value Taxonomies</i>. </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Formal
+definition of AVT. Suppose there is a vector of attributes </span><span
+lang=RU style='font-size:11.0pt'><sub><img width=121 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image006.gif"></sub></span><span
+style='font-size:11.0pt'>, and </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=59 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image007.gif"></sub></span><span
+lang=RU style='font-size:11.0pt'> </span><span style='font-size:11.0pt'>        defines
+a set of attribute values </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=19 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image008.gif"></sub></span><span
+style='font-size:11.0pt'>. In this case, the formal definition of AVT is as
+follows:</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Attribute
+Value Taxonomies </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=16 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image009.gif"></sub></span><span
+style='font-size:11.0pt'>of attribute </span><span lang=RU style='font-size:
+11.0pt'><sub><img width=19 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image008.gif"></sub></span><span
+lang=RU> </span><span style='font-size:11.0pt'>a tree-like structure containing
+a partially ordered hierarchy of concepts presented in the form of set </span><span
+lang=RU style='font-size:11.0pt'><sub><img width=85 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image010.gif"></sub></span><span
+style='font-size:11.0pt'>, where </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=59 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image007.gif"></sub></span><span
+lang=RU> </span><span style='font-size:11.0pt'>is a finite set containing all
+the attributes in </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=19 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image008.gif"></sub></span><span
+style='font-size:11.0pt'>, and </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=15 height=15
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image011.gif"></sub></span><span
+style='font-size:11.0pt'> is sign of a partial order defining the relationship
+among the values of attributes in </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=59 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image007.gif"></sub></span><span
+style='font-size:11.0pt'>. Together, </span><span lang=RU style='font-size:
+11.0pt'><sub><img width=113 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image012.gif"></sub></span><span
+lang=RU> </span><span style='font-size:11.0pt'>represent an ordered set of
+taxonomies of attribute values connected with </span><span lang=RU
+style='font-size:11.0pt'><sub><img width=83 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image013.gif"></sub></span><span
+style='font-size:11.0pt'>.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Let</span><span
+lang=RU style='font-size:11.0pt'><sub><img width=69 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image014.gif"></sub></span><span
+style='font-size:11.0pt'>presents a set of all values</span><span lang=RU
+style='font-size:11.0pt'><sub><img width=16 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image009.gif"></sub></span><span
+style='font-size:11.0pt'>, and</span><span lang=RU style='font-size:11.0pt'><sub><img
+width=60 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image015.gif"></sub></span><span
+style='font-size:11.0pt'>points to the root element of the taxonomy</span><span
+lang=RU style='font-size:11.0pt'><sub><img width=16 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image009.gif"></sub></span><span
+style='font-size:11.0pt'>. Set of leaves </span><span lang=RU style='font-size:
+11.0pt'><sub><img width=73 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image016.gif"></sub></span><span
+lang=RU style='font-size:11.0pt'> </span><span style='font-size:11.0pt'>represent
+all the primitive attributes </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=19 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image008.gif"></sub></span><span
+style='font-size:11.0pt'>. </span><span lang=RU style='font-size:11.0pt'>Тогда</span><span
+style='font-size:11.0pt'>, </span><span lang=RU style='font-size:11.0pt'>абстрактными</span><span
+lang=RU style='font-size:11.0pt'> </span><span lang=RU style='font-size:11.0pt'>значениями</span><span
+lang=RU style='font-size:11.0pt'> </span><span lang=RU style='font-size:11.0pt'>атрибутов</span><span
+lang=RU style='font-size:11.0pt'> </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=19 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image008.gif"></sub></span><span
+lang=RU> </span><span style='font-size:11.0pt'>will be called the tree </span><span
+lang=RU style='font-size:11.0pt'><sub><img width=153 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image017.gif"></sub></span><span
+style='font-size:11.0pt'>. And every edge of the tree represents <b>is-a</b>
+relation between the attributes of the entire taxonomy. Thus AVT defines an
+abstract hierarchy between the values of attributes.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>Modern
+languages for ontologies describing</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><i><span style='font-size:
+11.0pt'>RDF</span></i></b><span style='font-size:11.0pt'> (Resource Description
+Framework) [5] is a language for describing metadata resources, his main
+purpose is to present the allegations as equally well received by both human
+and machine.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=RU style='font-size:
+11.0pt'>Атомарным объектом в RDF является триплет: субъект – предикат – объект.
+Считается, что любой объект, можно описать в терминах простых свойств и
+значений этих свойств.  </span></p>
+
+<p class=MsoNormal align=right style='text-align:right'><span style='font-size:
+11.0pt'>Table</span><span lang=RU style='font-size:11.0pt'> 1</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:11.0pt'>Sample of table with selected parameters</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=319
+ style='width:238.9pt;margin-left:11.95pt;border-collapse:collapse;border:none'>
+ <tr style='height:27.75pt'>
+  <td width=106 style='width:79.6pt;border:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:me</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border:solid windowtext 1.0pt;border-left:
+  none;padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:owns</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border:solid windowtext 1.0pt;border-left:
+  none;padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:my_appartment</span></p>
+  </td>
+ </tr>
+ <tr style='height:27.75pt'>
+  <td width=106 style='width:79.6pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:me</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:owns</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:my_computer</span></p>
+  </td>
+ </tr>
+ <tr style='height:27.75pt'>
+  <td width=106 style='width:79.6pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:me</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:is_in</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:philadelhia</span></p>
+  </td>
+ </tr>
+ <tr style='height:27.75pt'>
+  <td width=106 style='width:79.6pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:my_appartment</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:has_a</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:my_computer</span></p>
+  </td>
+ </tr>
+ <tr style='height:27.75pt'>
+  <td width=106 style='width:79.6pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:my_appartment</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:has_a</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:my_bed</span></p>
+  </td>
+ </tr>
+ <tr style='height:27.75pt'>
+  <td width=106 style='width:79.6pt;border:solid windowtext 1.0pt;border-top:
+  none;padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:my_appartment</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:is_next_to</span></p>
+  </td>
+  <td width=106 style='width:79.65pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=RU
+  style='font-size:11.0pt'>:my_bed</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Before
+the colon should be disclosed <i>Uniform Resource Identifier</i> (URI), but in
+order to save traffic is allowed to specify only the namespace.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Additionally,
+in order to improve the perception of human, there is the practice of
+representation of the RDF in the form of graphs.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify;page-break-after:avoid'><span
+lang=RU style='font-size:11.0pt'><img width=316 height=181
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image018.gif"></span></p>
+
+<p class=MsoCaption style='text-align:justify'><span style='font-size:11.0pt;
+font-weight:normal'>Picture </span><span
+style='font-size:11.0pt;font-weight:normal'>6</span><span lang=RU
+style='font-size:11.0pt'> </span><span style='font-size:11.0pt;font-weight:
+normal'>Example of presentation of RDF schema as a graph</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>In
+Fig. 6 shows an example presentation of the structure of RDF as a graph. Ribs
+are approved, the name at the beginning of the rib - subject to approval at the
+end of its addition, at the very name of the arc - the predicate.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><i><span style='font-size:
+11.0pt'>OWL</span></i></b><span style='font-size:11.0pt'> (Web Ontology
+Language)[6] is a web ontology language, created to represent the value of
+terms and relations between these terms in dictionaries. Unlike RDF, the
+language uses a higher level of abstraction that allows the language along with
+formal semantics to use an additional glossary of terms.</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>An important advantage of OWL is that it is based on a
+precise mathematical model description logic [7].</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>OWL place in Semantic Web Concepts stack presented in
+Fig. 7.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><span
+lang=RU style='font-size:11.0pt'><img width=287 height=208
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image019.gif"></span></p>
+
+<p class=MsoCaption style='text-align:justify'><span style='font-size:11.0pt;
+font-weight:normal'>Picture </span><span
+style='font-size:11.0pt;font-weight:normal'>7</span><span lang=RU
+style='font-size:11.0pt'> </span><span style='font-size:11.0pt;font-weight:
+normal'>W3 consortium structure of the Semantic Web vision</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>XML – offers the possibility of
+creating structured documents, but imposes on him any semantic requirements;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span lang=RU style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=RU style='font-size:11.0pt'>XML Schema – XML Schema –
+определяет структуру XML документов и дополнительно позволяет использовать
+конкретные типы данных;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span lang=RU style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>RDF – provides an opportunity to
+describe the abstract data model, some objects and relations between them. </span><span
+lang=RU style='font-size:11.0pt'>Uses simple semantics of XML-based syntax;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>RDF Schema – allows to describe
+properties and classes of RDF - resources, as well as the semantics of
+relations between them;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>OWL – expands the descriptive
+capabilities of previous technologies. Allows you to describe the relations
+between classes (for example Nonintersecting), cardinality (eg &quot;exactly
+one&quot;), symmetry, equality, enumerated types of classes.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>By
+the degree of expressiveness are three dialects of OWL</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify'><span
+style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>OWL Lite</span></i><span
+style='font-size:11.0pt'> – is a subset of the complete specification,
+providing minimally adequate means of describing ontologies. Designed to reduce
+the initial introduction of OWL. And also to simplify the migration to OWL
+thesauri and other taxonomies. It is guaranteed that the logical conclusion to
+the metadata with the expressiveness of OWL Lite runs in polynomial time
+(complexity of the algorithm belongs to the class P).</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify'><span
+style='font-size:11.0pt'>This dialect is based on the description logic </span><b><span
+lang=RU style='font-size:11.0pt'><sub><img width=69 height=21
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image020.gif"></sub></span></b><span
+style='font-size:11.0pt'>.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>OWL DL</span></i><span
+style='font-size:11.0pt'> – on the one hand provides maximum expressiveness,
+computational completeness (all of them are guaranteed computed) and complete
+decidability (all computations are completed in a certain time). But in this
+regard has strict restrictions, for example on the relationship of classes and
+the execution time of some queries on such data may require exponential runtime.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify'><span
+style='font-size:11.0pt'>This dialect is based on the description logic </span><span
+lang=RU style='font-size:11.0pt'><sub><img width=81 height=21
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image021.gif"></sub></span><span
+style='font-size:11.0pt'>.</span><span style='font-size:11.0pt'>     </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>OWL Full</span></i><span
+style='font-size:11.0pt'> – provides maximum expressive freedom, but gives no
+guarantees decidability. All structures developed based justified only feasible
+algorithm. It is unlikely that any reasoning software will be able to maintain
+full support for every feature of OWL Full.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify'><span
+style='font-size:11.0pt'>Not match any description logic, so - as, in
+principle, is not resolvable.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>            </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Currently
+OWL language is a basic tool for describing ontologies.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-size:11.0pt'>Software (mobile, user)
+agents (SA)</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>In
+our SD SA is the program, acting on behalf of the user to perform independently
+gathering information for some, perhaps a long time while away entirely
+predictable environment. Also important feature is their ability to interact
+and cooperate with other agents and services to achieve the goal.</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>In contrast to the bots of search engines, which
+simply scans a range of WEB pages, the agents move from one server to another,
+ie at the sending server agent is destroyed, and the host is created with a
+full set of previously collected information. This model enables the agent to
+use the available servers, data sources that are not accessible through the WEB
+interface.</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>It is clear that at the server must be installed
+platform that enables the agent to accept and accommodate his requests. It is
+also important to pay attention to the security and integrity of agents. For
+this, the approach selected spaces in which the agent operates in a safe
+environment with limited rights and opportunities impact on the system.</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>In its implementation of the agents are usually
+divided into two categories according to the level of its freedom: </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>Nointelligent agents – </span></i><span
+style='font-size:11.0pt'>are inherently similarity function with a clearly
+defined number of parameters. It is strictly intended to perform a specific
+task in a strictly defined conditions.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>Intelligent</span></i><span
+style='font-size:11.0pt'> <i>agents</i> – are free to choose the technology to
+be used in each case to solve the problem. Often such programs are implemented
+by using neural networks, which allow the agent to constantly adapt to changing
+conditions.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>Microformats</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Microformats
+are an attempt to create a semantic markup entities in a variety of Web-pages
+are equally perceived as a good man and machine. Information in a microformat
+does not require the use of additional technology or the namespace in addition
+to the simple (X) HTML. Microformat specification, it is simply an agreement on
+standards for naming classes of elements of registration page to enable stored
+in each of the relevant data.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>To
+illustrate analyze the format of hCalendar.</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>This microformat is a subset of the iCalendar format
+(RFC 2445) and is intended to describe the dates of future or past events to
+provide opportunities for their automatic aggregation of search agents.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>&lt;div
+class=&quot;vevent&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    &lt;a
+class=&quot;url&quot; href=&quot;http://www.web2con.com/&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>        http://www.web2con.com/
+</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    &lt;/a&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    &lt;span
+class=&quot;summary&quot;&gt; </span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>        Web 2.0 Conference
+</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    &lt;/span&gt;:
+</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    &lt;abbr
+class=&quot;dtstart&quot; title=&quot;2007-10-05&quot;&gt; </span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>        October
+5 </span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    &lt;/abbr&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    -</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    &lt;abbr
+class=&quot;dtend&quot; title=&quot;2007-10-20&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>        19</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    &lt;/abbr&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    ,at the </span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    &lt;span
+class=&quot;location&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>        Argent
+Hotel, San Francisco, CA </span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'>    &lt;/span&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;color:maroon'> </span><span
+lang=RU style='font-size:11.0pt;color:maroon'>&lt;/div&gt;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=RU style='font-size:
+11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>In this example describes the establishment of the
+root class of the container with the date (class = &quot;vevent&quot;) and relating
+to an event a certain date in the standard ISO date format.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Currently
+the most common microformats are </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>hAtom                   -           </span><span
+lang=RU style='font-size:11.0pt'>newsletters      format</span><span
+style='font-size:11.0pt'>;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>hCalendar              -           compiling
+a calendar of events and description;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>hCard                    -           description
+of the people, companies, places;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>hResume               -           format
+for resume description;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>hReview                -           </span><span
+lang=RU style='font-size:11.0pt'>reviews implementation</span><span
+style='font-size:11.0pt'>;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>XFN                      -                       way
+to specify relationships between people;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>Modern
+Trends in Development of ontologies</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Preparation
+of ontologies using an expert approach is very slow and expensive process, and
+although the result may be very good, but the vast majority are using automatic
+classifiers that build ontologies according to available data. In this way many
+troubled places, and therefore existing automatic classifiers are not of good
+quality and one of the options for increasing the accuracy of classification is
+the<i> Ontology Aware Classifiers</i> [9].</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>When
+using automatic methods of data mining (data-driven knowledge discovery)
+sometimes there is a need to investigate the information received from
+different points of view. This is especially important in scientific research,
+when the result of data analysis depends strongly on the used for submission to
+the ontology. In particular, it is one of the most important moments in the
+procedure of automatic learning classifier data based on their ontologies. For
+example, if the analyzed data in different parts of the attributes are
+represented with different accuracy (which is very common in real applications,
+for example, if the data was originally collected from various sources, with
+different terminology), then at the moment there is no algorithm that takes
+into account this and used different levels of ontologies for different parts
+of the data and work effectively with potentially inadequately specified data.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>The
+following requirements are prerequisites for the establishment of a new
+generation of classifiers:</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>require a simple, powerful and
+robusta classifiers;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>classifiers using abstract
+attributes often provide the most simple model of the separation of data</span><span
+style='font-size:11.0pt'>;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>in the case of insufficient data
+score obtained on the basis of abstract attribute values are often more
+reliable than on the basis of primitive values.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><span
+lang=RU style='font-size:11.0pt'><img width=316 height=101
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image022.gif"></span></p>
+
+<p class=MsoCaption><span style='font-size:11.0pt;font-weight:normal'>Picture </span><span
+style='font-size:11.0pt;font-weight:normal'>8</span><span lang=RU
+style='font-size:11.0pt'> </span><span style='font-size:11.0pt;font-weight:
+normal'>Part of ontologies for colors and descriptions of figures</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>In
+Fig. 8 can see examples of partially and fully defined shapes. For example,
+partially defined data such as (blue, ellipse), (sky blue, triangle), fully
+determined (light blue, square). </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>There
+is a method for creating a learning classifier templates based Attribute Value
+Taxonomies (AVT) in the presence of potentially insufficient data. The
+algorithm uses a decision tree and is called (<b>AVT-DTL</b> Attribute Value
+Taxonomies - D</span><span style='font-size:11.0pt'>ecision Tree Learning
+algorithm</span><span style='font-size:11.0pt'>).</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>There
+is an ontology of colors (Fig. 8), and analyzed data, some attributes are
+described as blue, some like red, and some like a sky-blue. In this case, the
+algorithm produces a classification based on multiple levels of the ontology
+would be more accurate.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>The
+classical method for constructing the classification tree at each step selects
+the most informative attribute, and declares it the node at the current
+iteration. In contrast, AVT-DTL for each iteration chooses not simply an
+attribute, and the level of taxonomy, in which he represented. This level is
+represented as a vector of numbers at all levels involved in the classification
+taxonomies. Then, on the basis of all created this way vectors created lower
+bound on the minimum values of the vectors for each taxonomy. Finally, checks
+on the adequacy of informativeness obtained constraints.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Define
+some terms</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>AVT(<i>A</i>) – taxonomy of
+attribute </span><i><span lang=RU style='font-size:11.0pt'>А</span></i><span
+style='font-size:11.0pt'>;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Leavs(AVT(<i>A</i>)) –  set of all
+possible values of </span><i><span lang=RU style='font-size:11.0pt'>А</span></i><span
+style='font-size:11.0pt'>;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>all internal, intermediate nodes
+called abstract;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>cut is called an imaginary line
+abstraction taxonomy, for example (red, blue), (red, sky blue, turquoise).</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>To
+achieve each leaf, there is one path T, which can be represented as a set of
+paths to all the parent nodes T = {T<sub>1</sub>,T<sub>2</sub>,..T<sub>i</sub>},
+where T<sub>i</sub> = AVT(A<sub>i</sub>).</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Also,
+in addition, the following operations on the taxonomy of T<sub>i</sub> associated
+with the attribute A<sub>i</sub>:</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>prim </span></i><span
+style='font-size:11.0pt'>(<i>Ti</i>)=<i>Leaves</i>(AVT(<i>Ai</i>)); number of
+nodes in the i-th taxonomy;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>depth</span></i><span
+style='font-size:11.0pt'>(<i>Ti , v</i>(<i>Ai</i>)); length of the path from
+the root to the value of the i-th attribute taxonomy;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>leaf</span></i><span
+style='font-size:11.0pt'>(<i>Ti , v</i>(<i>Ai</i>)); boolean value, true if the
+i-th attribute in the taxonomy of the <i>Ti </i>is a leaf, ie  <i>v</i>(<i>Ai</i>)
+</span><span lang=RU style='font-size:11.0pt'><sub><img width=13 height=13
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image023.gif"></sub></span><span
+lang=RU style='font-size:11.0pt'> </span><i><span style='font-size:11.0pt'>Leaves</span></i><span
+style='font-size:11.0pt'>(<i>Ti</i>).</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=RU style='font-size:
+11.0pt'>                                                                         </span><span
+style='font-size:11.0pt'>It is believed that the attribute is completely
+defined if it has a value of one of the leafs of taxonomy <i>A</i></span><span
+style='font-size:11.0pt'> </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=13 height=13
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image023.gif"></sub></span><span
+lang=RU style='font-size:11.0pt'> </span><i><span style='font-size:11.0pt'>Leaves</span></i><span
+style='font-size:11.0pt'>(AVT(<i>A</i>)), otherwise the attribute is defined
+partially.</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-autospace:ideograph-numeric'><span
+style='font-size:11.0pt'>These are declared completely defined if each
+attribute has the most complete description: </span><span lang=RU
+style='font-size:11.0pt'><sub><img width=21 height=19
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image024.gif"></sub><sub><img
+width=100 height=25
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image025.gif"></sub></span><span
+style='font-size:11.0pt'>.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>The
+considered algorithm is a search from top to bottom over the space of
+hypotheses for constructing a decision tree. The algorithm gives preference to
+the division on how to more abstract (close to the root) attributes. This
+allows for each attribute to choose its level of abstraction in the taxonomy.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>In
+the description of the algorithm uses the following definitions:</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>A=</span></i><span
+style='font-size:11.0pt'>{<i>A<sub>1</sub>, A<sub>2</sub>, …, A<sub>n</sub></i>}
+ordered set of attributes. </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>T=</span></i><span
+style='font-size:11.0pt'>{<i>T<sub>1</sub>, T<sub>2</sub>, …, T<sub>n</sub></i>}
+taxonomies set.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:11.0pt'>C=</span></i><span
+style='font-size:11.0pt'>{<i>C<sub>1</sub>, C<sub>2</sub>, …, C<sub>m</sub></i>}
+set targets, which are mutually disjoint classes.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=RU style='font-size:11.0pt'>&#968;</span><span
+style='font-size:11.0pt'>(<i>v, T<sub>i</sub></i>) - many descendants of the
+node corresponding to the value v in the taxonomy<i>  T<sub>i</sub>.</i></span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=348 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=358 height=99
+  src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image026.gif"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+<i><span style='font-size:11.0pt'>Children (v, T<sub>i</sub>)  - </span></i><span
+style='font-size:11.0pt'>many descendants of the node v in the taxonomy<i>  T<sub>i</sub>.</i></span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span lang=RU style='font-size:11.0pt'>&#923;</span></i><span
+style='font-size:11.0pt'>(<i>v, T<sub>i</sub></i>) – list of ancestors,
+including the root, for <i>v </i>in<i> T<sub>i</sub>.</i></span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span lang=RU style='font-size:11.0pt'>&#963;</span></i><i><sub><span
+style='font-size:11.0pt'>i</span></sub></i><span style='font-size:11.0pt'>(<i>v,
+S</i>) – number of occurrences of value <i>v</i> of attribute A<sub>i</sub> in
+a training set S.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span lang=LV style='font-size:11.0pt'>Counts(T<sub>i</sub>)</span></i><span
+lang=LV style='font-size:11.0pt'> – </span><span style='font-size:11.0pt'>tree
+whose nodes contain numerical values of attributes in the taxonomy <i>T<sub>i</sub></i>.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:9.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=RU style='font-size:11.0pt'><sub><img width=148
+height=25 src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image027.gif"></sub></span><span
+style='font-size:11.0pt'> - vector of values (also called the boundary AVT),
+consisting of the values of nodes of S, where node </span><span lang=RU
+style='font-size:11.0pt'><sub><img width=28 height=25
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image028.gif"></sub></span><span
+lang=RU style='font-size:11.0pt'> </span><span style='font-size:11.0pt'>indicates
+the node value T<sub>i</sub> of attribute A<sub>i</sub>.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=RU style='font-size:
+11.0pt'><sub><img width=56 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image029.gif"></sub></span><span
+style='font-size:11.0pt'> true, only if </span><span lang=RU style='font-size:
+11.0pt'><sub><img width=69 height=25
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image030.gif"></sub></span><span
+style='font-size:11.0pt'>, and</span><span lang=RU style='font-size:11.0pt'><sub><img
+width=105 height=25
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image031.gif"></sub></span><span
+style='font-size:11.0pt'>.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:.25in'><span
+style='font-size:11.0pt'>AVT-DTL algorithm works in the direction of AVT from
+the root of each tree to the leaves of trees and build solutions that use the
+most abstract attributes which are sufficiently informative to classify the
+training set, containing a potentially insufficient data. In its work on an
+algorithm, based on existing AVT, conducts a search algorithm, hill-climbing
+(in which each next node is selected by increasing its proximity to the
+decision) over the space of hypotheses about the options for constructing a
+decision tree.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>The
+algorithm consists of two main steps:</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Calculation of weights on the basis
+of AVT.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Building a decision tree, based on
+this weights.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><i><span style='font-size:11.0pt'>More
+information about each of the steps</span></i><span style='font-size:11.0pt'>.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Calculation of weights on the
+basis of AVT consists of the following:</span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Creating a root element, setting a
+training set S, completing the set</span><span style='font-size:11.0pt'> <i>P<sub>S</sub>=</i>{<i>A<sub>1</sub>,
+A<sub>2</sub>, …, A<sub>n</sub></i>} so that each of the elements of the vector
+used the value of the corresponding taxonomy <i>T<sub>1</sub>, T<sub>2</sub>,
+…, T<sub>n.</sub></i></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-indent:-.25in'><span
+style='font-size:11.0pt'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Initialize the calculation of
+weights based on the analysis of training data;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:-.5in'><span
+lang=RU style='font-size:11.0pt'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Accumulation of weights associated
+with each value of each attribute of the training set. </span><span lang=RU
+style='font-size:11.0pt'>Thus each <sub><img width=44 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image032.gif"></sub></span><span
+style='font-size:11.0pt'>calulated</span><span style='font-size:11.0pt'> </span><i><span
+lang=RU style='font-size:11.0pt'>&#963;<sub>i</sub></span></i><span lang=RU
+style='font-size:11.0pt'>(<i>v, S</i>) </span><span style='font-size:11.0pt'>for
+each taxonomy</span><span lang=RU style='font-size:11.0pt'>.</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:-.5in'><span
+style='font-size:11.0pt'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ii.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>For each</span><span lang=RU
+style='font-size:11.0pt'><sub><img width=43 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image033.gif"></sub></span><span
+style='font-size:11.0pt'>updated weights of all elements of the parent if the
+previous step for the i-th node was received zero. The result is a tree </span><i><span
+lang=LV style='font-size:11.0pt'>Counts(T<sub>i</sub>)</span></i><i><span
+style='font-size:11.0pt'>.</span></i></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:-.5in'><span
+style='font-size:11.0pt'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>iii.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>For each</span><span lang=RU
+style='font-size:11.0pt'><sub><img width=44 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image032.gif"></sub></span><span
+lang=RU> </span><span style='font-size:11.0pt'>and for all incomplete attribute
+value <i>v</i> in each case <i>Ij </i></span><span lang=RU style='font-size:
+11.0pt'><sub><img width=13 height=13
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image023.gif"></sub></span><span
+lang=RU style='font-size:11.0pt'> </span><i><span style='font-size:11.0pt'>S</span></i><span
+style='font-size:11.0pt'>, recursively calculates the weight values for all
+descendants <i>v</i> in taxonomy <i>T<sub>i</sub></i> at the base on </span><i><span
+lang=LV style='font-size:11.0pt'>Counts(T<sub>i</sub>)</span></i><span lang=LV
+style='font-size:11.0pt'> </span><span style='font-size:11.0pt'>and rebuilds </span><i><span
+lang=LV style='font-size:11.0pt'>Counts(T<sub>i</sub>)</span></i><i><span
+style='font-size:11.0pt'>.</span></i><span style='font-size:11.0pt'> </span><span
+lang=RU style='font-size:11.0pt'>      </span><span style='font-size:11.0pt'>Thus,
+for each d from </span><span lang=RU style='font-size:11.0pt'>&#968;</span><span
+style='font-size:11.0pt'>(<i>v, T<sub>i</sub></i>), rebuilds </span><i><span
+lang=RU style='font-size:11.0pt'>&#963;</span></i><i><sub><span
+style='font-size:11.0pt'>i</span></sub></i><span style='font-size:11.0pt'>(<i>d,
+S</i>) using this formula:</span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify'><span
+style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='margin-left:.75in;text-align:center'><span
+style='font-size:11.0pt'>(1)</span></p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoCaption>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=21 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=316 height=162
+  src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image034.jpg"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+<span lang=RU style='font-size:11.0pt;font-weight:normal'> </span><span
+style='font-size:11.0pt;font-weight:normal'>Picture </span><span
+style='font-size:11.0pt;font-weight:normal'>9</span><span lang=RU
+style='font-size:11.0pt;font-weight:normal'> </span><span style='font-size:
+11.0pt;font-weight:normal'>Sample of the vector pointer p</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='text-align:justify;text-autospace:none'><span
+style='font-size:11.0pt'>As an illustration, in Fig. 8 represents a vector
+pointing to the two attribute values <i>blue</i> and <i>polygon</i> for two
+taxonomies used for the approximately following rule: If (<i>Color=blue &amp; Shape=polygon
+&amp;…</i>) then <i>Class =+</i>.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Building a decision tree, based on
+the weight consists of the following operations (</span><span lang=RU
+style='font-size:11.0pt'><sub><img width=129 height=29
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image035.gif"></sub></span><span
+style='font-size:11.0pt'>:</span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>If every element of the training
+set S is marked as C<sub>i</sub>, then returns C<sub>i</sub>, when returns C<sub>i</sub>,
+otherwise if </span><span lang=RU style='font-size:11.0pt'><sub><img width=87
+height=24 src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image036.gif"></sub></span><span
+style='font-size:11.0pt'>when there is a need to create the final (leaf)
+element (Stopping Criterion).</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:-.25in'><span
+style='font-size:11.0pt'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>For each pointer</span><span
+lang=RU style='font-size:11.0pt'><sub><img width=31 height=25
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image037.gif"></sub></span><span
+style='font-size:11.0pt'>in vector </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=17 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image038.gif"></sub></span><span
+lang=RU style='font-size:11.0pt'> </span><span style='font-size:11.0pt'>do:</span></p>
+
+<p class=MsoNormal style='margin-left:45.0pt;text-align:justify;text-indent:
+-45.0pt'><span style='font-size:11.0pt'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Check each part of a null value
+with a partially specified attribute <i>v</i> to attribute <i>A<sub>i</sub></i>
+with pointer </span><span lang=RU style='font-size:11.0pt'><sub><img width=31
+height=25 src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image037.gif"></sub></span><span
+style='font-size:11.0pt'>. If </span><i><span style='font-size:11.0pt'>depth</span></i><span
+style='font-size:11.0pt'>(<i>Ti , P<sub>i</sub><sup>(S)</sup></i>) &lt; <i>depth</i>(<i>Ti
+, v</i>), a partially unspecified value is treated as a fully qualified and
+sent to the appropriate level of decision tree with root </span><span lang=RU
+style='font-size:11.0pt'><sub><img width=31 height=25
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image037.gif"></sub></span><span
+style='font-size:11.0pt'>. Otherwise replace <i>v</i> with probability <i>d</i>
+(element </span><i><span style='font-size:11.0pt'>Children (v, T<sub>i</sub>))</span></i><span
+style='font-size:11.0pt'> in accordance with the distribution of weights
+associated with the <i>Children (v, T<sub>i</sub>) </i>    by the following
+rule:</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify'><span
+style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='margin-left:45.0pt;text-align:center'><span
+lang=RU style='font-size:11.0pt'><sub><img width=229 height=76
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image039.gif"></sub></span><span
+style='font-size:11.0pt'> (2)</span></p>
+
+<p class=MsoNormal style='margin-left:45.0pt;text-align:justify'><span lang=RU
+style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:45.0pt;text-align:justify;text-indent:
+-45.0pt'><span style='font-size:11.0pt'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ii.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Calculates the entropy of S on the
+basis of its separation</span><span style='font-size:11.0pt'> <i>Children (p<sub>i</sub><sup>(S)</sup>,
+T<sub>i</sub>)</i>.</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:-.25in'><span
+style='font-size:11.0pt'>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Selecting best pointer </span><span
+lang=RU style='font-size:11.0pt'><sub><img width=31 height=25
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image040.gif"></sub>в<sub><img
+width=20 height=24
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image041.gif"></sub></span><span
+lang=RU> </span><span style='font-size:11.0pt'>to, this division of S provided
+the maximum information gain.</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:-.25in'><span
+style='font-size:11.0pt'>d.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Separation of set S into subsets </span><span
+lang=RU style='font-size:11.0pt'><sub><img width=203 height=47
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image042.gif"></sub></span><span
+style='font-size:11.0pt'>using data from </span><i><span style='font-size:11.0pt'>Children
+(p<sub>a</sub><sup>(S)</sup>, T<sub>i</sub>)</span></i><span style='font-size:
+11.0pt'>.</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:-.25in'><span
+style='font-size:11.0pt'>e.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Expansion <i>P<sub>S</sub></i> to
+obtain a new pointing vector of the subset </span><span lang=RU
+style='font-size:11.0pt'><sub><img width=208 height=47
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image043.gif"></sub></span><span
+lang=RU> </span><span style='font-size:11.0pt'>by changing the pointer </span><i><span
+style='font-size:11.0pt'>Pa<sup>(S)</sup> </span></i><span style='font-size:
+11.0pt'>to value of attribute <i>A<sub>i</sub></i> from corresponding subset <i>S<sub>j</sub></i>
+</span><span lang=RU style='font-size:11.0pt'><sub><img width=193 height=37
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image044.gif"></sub></span><span
+style='font-size:11.0pt'>.</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:-.25in'><span
+lang=RU style='font-size:11.0pt'>f.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>For each</span><span
+style='font-size:11.0pt'> </span><span lang=RU style='font-size:11.0pt'><sub><img
+width=193 height=37
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image044.gif"></sub> </span><span
+style='font-size:11.0pt'>do</span><span style='font-size:11.0pt'> <span
+lang=RU><sub><img width=149 height=41
+src="/articles/my_articles/2009/Pavel_Osipov_Ontoligies_2009_16_10_RU/html/files/image045.gif"></sub>.</span></span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=RU
+style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=RU
+style='font-size:11.0pt'>Description of evaluation algorithm</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=RU
+style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>To
+confirm the effectiveness of this algorithm, a comparative test on the same
+sample with another, the most popular at the moment algorithm C 4.5.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>The
+results proved the effectiveness of the algorithm, particularly important was
+the marked increase in the quality of the final classifier constructed from the
+sample with a high percentage of missing data. The final payoff is within 5%
+-30% increase in the efficiency of classification. Also noted that by AVT-DTL
+algorithm classifying trees containing fewer nodes and more compact, allowing a
+gain in the amount of resources required for their use.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b> </b></p>
+
+<p class=MsoNormal style='text-align:justify'><b>&nbsp;</b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b>Conclusion</b></p>
+
+<p class=MsoNormal style='text-align:justify'>&nbsp;</p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>At
+the time of melon, it is difficult to predict what will be the system of data
+exchange in the future, but the directions of development are laid right now
+and their effectiveness depends on many things.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>This
+paper describes the basic technology allows you to create complex systems that
+can be used effectively as human beings and machines. In the stack concepts
+Semantic WEB at various levels is a large number of different technologies, but
+sharing their application would lead to synergies.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>So
+- as the effectiveness of technologies for each level of the stack affects the
+whole system, then considered the second part of the algorithm <b>AVT-DTL</b> improving
+the quality of automatic qualifiers in the end will increase the effectiveness
+of the Semantic Web.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'>About the autors</p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=RU>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:10.0pt'>Pavel
+Osipov </span></b><span style='font-size:10.0pt'>Mg.Sc.Eng.<b> </b>Ph.d.
+student, Institute of Information Technology, Riga Technical University. He received his masters diploma in Transport and Telecommunications Institute, Riga. His research interests include web data mining, machine learning and knowledge
+extraction.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:10.0pt'>Arkady
+Borisov,</span></b><span style='font-size:10.0pt'> Dr.habil.sc.comp.,Professor,
+  Institute of Information Technology, Riga Technical University, 1 Kalku Street , Riga LV-1658 Latvija, e-mail: <a href="mailto:aborisov@cs.rtu.lv">arkadijs.borisovs@cs.rtu.lv</a>.</span></p>
+
+<p class=MsoNormal style='text-align:justify'>&nbsp;</p>
+
+<p class=MsoNormal align=center style='text-align:center'><b><span
+style='font-size:11.0pt'>References</span></b></p>
+
+<p class=MsoNormal><span lang=RU style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Main page of W3 consortium,
+Semantic Web ideology creator <a href="http://www.w3.org/2001/sw/">http://www.w3.org/2001/sw/</a>.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Cory Doctorow Metacrap: Putting
+the torch to seven straw-men of the meta-utopia </span><span lang=RU
+style='font-size:11.0pt'><a href="http://www.well.com/~doctorow/metacrap.htm"><span
+lang=EN-US>http://www.well.com/~doctorow/metacrap.htm</span></a></span><span
+style='font-size:11.0pt'>.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Main microformats ideology site <a
+href="http://microformats.org/">http://microformats.org/</a>.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Main page of W3 consortium, Web
+Ontology Language for Services <a href="http://www.w3.org/Submission/2004/07/">http://www.w3.org/Submission/2004/07/</a>.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Mai page of W3 consortium,
+Resource Description Framework <a href="http://www.w3.org/Submission/2004/07/">http://www.w3.org/Submission/2004/07/</a>.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Main page of W3 consortium, Web
+Ontology Language (OWL) </span><span lang=RU style='font-size:11.0pt'><a
+href="http://www.w3.org/2004/OWL/"><span lang=EN-US>http://www.w3.org/2004/OWL/</span></a></span><span
+style='font-size:11.0pt'>.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Baader F., Horrocks I., Sattler U., Description Logics as Ontology Languages for the Semantic Web // Berlin: Springer ISSN 0302-9743, February 2005. - P. 228-248.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in'><span style='font-size:11.0pt'>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Main page of microformats
+community </span><span lang=RU style='font-size:11.0pt'><a
+href="http://microformats.org/"><span lang=EN-US>http://microformats.org/</span></a></span><span
+style='font-size:11.0pt'>.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-align:justify;text-indent:
+-.25in;text-autospace:none'><span style='font-size:11.0pt'>9.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:11.0pt'>Zhang J., Learning ontology aware classifiers //
+Dissertation of the requirements for the degree of DOCTOR OF PHILOSOPHY / Iowa
+State University 2005</span></p>
+
+<p class=MsoNormal style='text-align:justify;text-autospace:none'><span
+style='font-size:10.0pt;font-family:CMR10'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-autospace:none'><span style='font-size:10.0pt;
+font-family:CMR10'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+</div>
+</div>        <br/><br/>
+        <ins><span style="float: right;position: relative;left: -310px;"><b>
+            <img src="/engine/images/top_sign_sm.png" alt="" style="border: 0px;"
+            />&nbsp;&nbsp;<a href="#void()" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });return false;"
+                    >Наверх</a></b>
+        </span><br/><br/></ins>
+        
+    </div>
+</div>
+<div class='mainNewsDiv'>
+    
+
+    <table width='100%' style='background-color:#f4f4f4;'>
+    <tr>
+        <td class='t_tl'></td>
+        <td class='t_tc'></td>
+    </tr>
+    <tr>
+    <td class='t_ml'></td>
+    <td class='t_mc' align='left'>
+        <div id='news_block' class='opened_block newsMainTable'>
+        <p>Все категории</p>
+        <br/>
+            <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Книги, о которых приятно вспомнить после прочтения">
+    <a class="cloudEl cloudEl3" href="/books/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Книги</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Рооолики :)">
+    <a class="cloudEl cloudEl3" href="/roller/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Ролики</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="не-Полный список моих публикаций, либо просто ссылка на издание, либо вся статья в PDF">
+    <a class="cloudEl cloudEl3" href="/my_articles/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Публикации</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Сайты, в создании/поддержке которых я принимал участие, и о которых хочется что-то сказать">
+    <a class="cloudEl cloudEl3" href="/my_sites/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Мои сайты</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Информация вне определённой категории">
+    <a class="cloudEl cloudEl3" href="/stuff/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Разное</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Интересные вещи и рецепты связанные с PHP">
+    <a class="cloudEl cloudEl3" href="/php/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />PHP</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Если есть, что интересного о музыке, пишу сюда.">
+    <a class="cloudEl cloudEl3" href="/music/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Музыка</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="О семантической паутине и будущем развития Internet">
+    <a class="cloudEl cloudEl3" href="/semantic_web/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Semantic WEB</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Автоматизация некоторых рутинных операций в консоли и оффисе">
+    <a class="cloudEl cloudEl3" href="/pc_goodies/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Автоматизация рутинных операций</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Неочевидные вещи о PHP фреймворке Symfony2, которые потребовали времени на нахождение решения">
+    <a class="cloudEl cloudEl3" href="/symfony2/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Symfony2</a>
+   </span>
+    
+    </div>
+
+
+    <div id='fadback_block' class='closed_block newsMainTable'>
+        <div class='friend_link'>
+            <a href='http://iti.rtu.lv/'>Институт Информационных Технологий</a>
+        </div>
+        <div class='friend_link'>
+            <a href='http://www.tsi.lv' class='friend_link'>Институт Транспорта и Связи</a><br/>
+        </div>
+        <div class='friend_link'>
+            <a href='http://habrahabr.ru/users/pavel_osipov/' class='friend_link'>Я на Хабре</a><br/>
+        </div>
+    </div>
+    </td>
+
+    </tr>
+    <tr>
+        <td class='t_bl'></td>
+        <td class='t_bc'></td>
+    </tr>
+    </table>
+    
+</div>
+<a href="/semantic_web/" id="semanticWebImgHolder">
+    <div class="semanticWebImg" title="Семантическая паутинка"></div>
+</a>
+
+<div style="width: 100%;">
+    
+    <div id="rss_link_holder">
+        <a href="/engine/feed.xml">
+            <img src="/engine/images/1300800514_rss2_8-17.png"
+                 title="Получай извещение о появлении новостей на сайте"
+                 alt="Подписаться на RSS канал с извещением о появлении новостей на сайте" style="border: 0px;"
+            />
+        </a>
+        <h3>Внимание!</h3>
+        Теперь за обновлениями сайта можно следить подписавшись на RSS ленту!
+        <br/><br/>
+    </div>
+
+</div>
+
+
+<div class='w3'>
+    <p>
+            </p>
+</div>
+
+
+<div class='footer custom_hr'>
+    <div style="position: relative;top: -64px;">
+        <a href="/engine/feed.xml">
+            <img
+                    src="/engine/images/1300800514_rss2_8-17.png"
+                    style="float: left;border:0px"
+                    title="RSS feed"
+                    alt="RSS feed"
+            />
+        </a>
+    </div>
+
+
+    <div style="position: relative;top: -64px;">
+        <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#119;&#119;&#46;&#111;&#115;&#105;&#112;&#111;&#118;&#46;&#108;&#118;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;'
+        ><img src="/engine/images/1300137871_email_upload1.png" style="float: left;border:0px"
+              title="Есть что сказать? Пишите мне на электропочту" alt="Есть что сказать? Пишите мне на электропочту"/></a>
+    </div>
+    <br/>
+    Павел Осипов &copy; 2009 - 2019
+    <a href="https://plus.google.com/u/0/102649742378290957378?rel=author">Google+</a>
+</div>
+<div class='footDiv'>
+
+
+</div>
+
+
+</body>
+</html>

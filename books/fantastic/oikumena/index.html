@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name='apple-mobile-web-app-capable' content='yes'/>
+    <meta name='mobile-web-app-capable' content='yes'>
+    <meta name='HandheldFriendly' content='true'/>
+    <meta name='viewport' content='width=device-width, user-scalable=no'/>
+
+    <link rel='SHORTCUT ICON' href='/engine/images/favicon.ico'/>
+    <title id='title'>Впечатление о книге Генри Лайон Олди «Ойкумена»</title>
+
+    <link rel="stylesheet" href="/engine/style.css?v=3" type="text/css"/>
+    <link rel="stylesheet" href="/engine/css/menu.css?v=1" type="text/css"/>
+
+    <meta name="description" content="Впечатление о книге Генри Лайон Олди «Ойкумена»"/>
+    <meta name="keywords" content="Ойкумена"/>
+
+    <script type="text/javascript"
+            src="/engine/js/mootools/mootools-1.2.4-core_and_more.js"></script>
+    <script type="text/javascript" src="/engine/js/engine.js"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Quantico|Poiret+One|Bad+Script&amp;subset=latin,cyrillic'
+          rel='stylesheet' type='text/css'/>
+
+                <script type="text/javascript"
+                    src="/engine/js/highslide/highslide-full.packed.js"></script>
+            <link rel="stylesheet" type="text/css" href="/engine/js/highslide/highslide.css"/>
+            <script type="text/javascript">
+                hs.graphicsDir = '/engine/js/highslide/graphics/';
+            </script>
+                <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19813451-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+
+<body class="bg" id="body">
+
+
+<div class='headDiv'>
+    <div id="animate-area">
+        <div class='headImg'>
+            <a href='/' title='На главную'><img
+                        alt='На главную' class="logo_image"
+                        src='/engine/images/top_image.png'
+                /></a>
+        </div>
+
+        <!--        <div class='headPhrase'>-->
+        <!--            <sup>Персональный сайт Павла Осипова</sup>-->
+        <!--        </div>-->
+
+        <div style='float: right;'>
+            <!--menu-->
+            
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<!--            https://www.w3schools.com/howto/howto_js_off-canvas.asp-->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="topnav" id="myTopnav">
+    <a href="/my_articles/"
+       title="Не-полный список моих публикаций, либо просто ссылка на издание, либо вся статья в PDF">Публикации</a>
+    <a href="/php/" title="Интересные вещи и рецепты связанные с PHP">PHP</a>
+    <a href="/books/" class="active" title="Книги, о которых приятно вспомнить после прочтения">Книги</a>
+    <a href="#about" onclick="toggleNav()" id="other_categories" title="Другие интересные разделы">Другие разделы 👇</a>
+    <a href="javascript:void(0);" class="icon" onclick="togglemenu()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<style>
+
+</style>
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function togglemenu() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+
+<!-- The overlay -->
+<div id="myNav" class="overlay">
+
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <!-- Overlay content -->
+    <div class="overlay-content" id="overlay-content">
+        <a href="/roller/" title="Рооолики :)">Ролики</a>
+        <a href="/my_sites/"
+           title="Сайты, в создании/поддержке которых я принимал участие, и о которых хочется что-то сказать">Мои
+            сайты</a>
+        <a href="/stuff/" title="Информация без определённой категории">Разное</a>
+        <a href="/music/" title="Если есть, что интересного о музыке, пишу сюда.">Музыка</a>
+        <a href="/semantic_web/" title="О семантической паутине и будущем развития Internet">Semantic WEB</a>
+        <a href="/pc_goodies/" title="Автоматизация некоторых рутинных операций в консоли и оффисе">Автоматизация
+            рутинных операций</a>
+        <a href="/symfony2/"
+           title="Неочевидные вещи о PHP фреймворке Symfony2, которые потребовали времени на нахождение решения">Symfony2</a>
+    </div>
+
+</div>
+<script>
+    var navOpened = false;
+
+    function toggleNav() {
+        if (navOpened) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    }
+
+    /* Open */
+    function openNav() {
+        navOpened = true;
+        var item = document.getElementById("myNav");
+        item.style.height = "100%";
+        item.style.width = "100%";
+        document.getElementById("overlay-content").style.display = "inline-block";
+    }
+
+    /* Close */
+    function closeNav() {
+        navOpened = false;
+        var item = document.getElementById("myNav");
+        item.style.height = "0%";
+        item.style.width = "0%";
+        document.getElementById("overlay-content").style.display = "none";
+    }
+</script>        </div>
+    </div>
+</div>
+        <ins>
+            <span class="left_100 top_link_holder">
+                <img src="/engine/images/top_sign_sm.png" alt="" style="border: 0px;"/>
+                <b>&nbsp;&nbsp;<a href="../#oikumena">Назад в к списку книг</a></b>&nbsp;&nbsp;
+            </span>
+        </ins>
+        
+<div class='mainDiv'>
+
+	<div class='mainTextDiv'>
+
+		<h1 title="Замечательно, получил удовольствие от чтения">
+			Генри Лайон Олди «Ойкумена»
+		</h1>
+
+    <div id='mainTextSubpost' class='mainTextSubpost'>
+
+                <ins>
+            <div style="float: right;display: inline-block;">
+                <a href="/articles/books/fantastic/oikumena/logos/2.jpeg" class="highslide"
+                   onclick="return hs.expand(this)">
+                    <img src="/articles/books/fantastic/oikumena/logos/thumbs/2.jpeg" class="roundedCornersImg"
+                         alt="Другие обложки" title="Другие обложки" />
+                </a>
+            </div>
+        </ins>
+        
+        <p>
+            Своё знакомство с творчеством Генри Лайона Олди я начал лет 7-8 назад <cite class="sm">(для 2012 года)</cite>, с замечательной вещи, под названием «<a href="http://fantlab.ru/work1151">Бездна Голодных глаз</a>». Отличная, мощная, очень хорошая книга, о которой наверное надо будет написáть отдельно. Двухтомник занимает своё почётное место на полке.
+    </p>
+
+    <p>
+В итоге она задала моё отношение к <a href="http://ru.wikipedia.org/wiki/%C3%E5%ED%F0%E8_%CB%E0%E9%EE%ED_%CE%EB%E4%E8">авторам</a>: ожидание качественных произведений написанных замечательным русским слогом, разнообразным, живым и богатым языком. Для себя я решил, что бóльшую половину удовольствия от чтения их книг мне приносит именно язык. Редко такое с книгами у меня случается, пожалуй до этого был «<a href="http://ru.wikipedia.org/wiki/%C2%EE%EB%EA%EE%E4%E0%E2_(%F1%E5%F0%E8%FF_%EA%ED%E8%E3)">Волкодав</a>» М.Семёновой, а до этого «<a href="http://ru.wikipedia.org/wiki/%D0%EE%E7%E0_%F0%E0%F1%EF%FF%F2%E8%FF">Сексус, Нексус, Плексус</a>» Г.Миллера (хотя там во многом заслуга переводчика).
+Сейчас вижу, что критерий качества и количества словарного запаса автора для меня стал настолько важен не так уж и давно.  Кто-то в сети назвал слог витиевато-пафосным, а я считаю его богатым и вкусным.
+    </p>
+
+    <p>
+Однако ближе к «Ойкумене». Насколько я понимаю, до этого произведения, Олди в основном писáли в жанре фэнтези, и в нём считались гуру и профи высокого класса. Но мне ближе научная фантастика, поэтому видимо до «Ойкумены» мне их книги не попадались.
+Но если «Ойкумена» это их проба пера в жанре космической фантастики, (сами они называют жанр, в котором написана эта книга: «космическая симфония»), то на мой взгляд эксперимент оказался удивительно успешным.
+
+        <div class="cite_holder" title="Цитата (должна быть в тему)">
+            <div class="cite">
+                <div class="cite_font">    Трилогия получила премию <a href="http://fantlab.ru/award53#c860" title="Лучшая отечественная фантастика" >"Мир фантастики, Итоги" в 2007 году </a> как лучшая отечественная фантастика,
+
+<a href="http://fantlab.ru/award38#c809" title="Серебряная стрела, 2008" >премию "Серебряная стрела" за 2008 год</a> в номинации "Лучший главный герой"
+
+и <a href='http://fantlab.ru/award23#c845' title="Портал, 2008 ">премию "Портал" в 2008 </a> в номинации "Крупная форма".
+<br />
+</div>
+                            </div>
+        </div>
+        
+    <div class="left_100">
+        <div class="left_100">
+        Ещё найденные обложки:
+    </div>
+
+        <ins>
+            <div style="float: right;display: inline-block;">
+                <a href="/articles/books/fantastic/oikumena/logos/3.jpeg" class="highslide"
+                   onclick="return hs.expand(this)">
+                    <img src="/articles/books/fantastic/oikumena/logos/thumbs/3.jpeg" class="roundedCornersImg"
+                         alt="Варианты обложки разных изданий книги Ойкумена" title="Варианты обложки разных изданий книги Ойкумена" />
+                </a>
+            </div>
+        </ins>
+                <ins>
+            <div style="float: right;display: inline-block;">
+                <a href="/articles/books/fantastic/oikumena/logos/4.jpeg" class="highslide"
+                   onclick="return hs.expand(this)">
+                    <img src="/articles/books/fantastic/oikumena/logos/thumbs/4.jpeg" class="roundedCornersImg"
+                         alt="Варианты обложки разных изданий книги Ойкумена" title="Варианты обложки разных изданий книги Ойкумена" />
+                </a>
+            </div>
+        </ins>
+                <ins>
+            <div style="float: right;display: inline-block;">
+                <a href="/articles/books/fantastic/oikumena/logos/5.jpeg" class="highslide"
+                   onclick="return hs.expand(this)">
+                    <img src="/articles/books/fantastic/oikumena/logos/thumbs/5.jpeg" class="roundedCornersImg"
+                         alt="Варианты обложки разных изданий книги Ойкумена" title="Варианты обложки разных изданий книги Ойкумена" />
+                </a>
+            </div>
+        </ins>
+                <ins>
+            <div style="float: right;display: inline-block;">
+                <a href="/articles/books/fantastic/oikumena/logos/6.jpeg" class="highslide"
+                   onclick="return hs.expand(this)">
+                    <img src="/articles/books/fantastic/oikumena/logos/thumbs/6.jpeg" class="roundedCornersImg"
+                         alt="Варианты обложки разных изданий книги Ойкумена" title="Варианты обложки разных изданий книги Ойкумена" />
+                </a>
+            </div>
+        </ins>
+                <ins>
+            <div style="float: right;display: inline-block;">
+                <a href="/articles/books/fantastic/oikumena/logos/7.jpeg" class="highslide"
+                   onclick="return hs.expand(this)">
+                    <img src="/articles/books/fantastic/oikumena/logos/thumbs/7.jpeg" class="roundedCornersImg"
+                         alt="Варианты обложки разных изданий книги Ойкумена" title="Варианты обложки разных изданий книги Ойкумена" />
+                </a>
+            </div>
+        </ins>
+                <ins>
+            <div style="float: right;display: inline-block;">
+                <a href="/articles/books/fantastic/oikumena/logos/8.jpeg" class="highslide"
+                   onclick="return hs.expand(this)">
+                    <img src="/articles/books/fantastic/oikumena/logos/thumbs/8.jpeg" class="roundedCornersImg"
+                         alt="Варианты обложки разных изданий книги Ойкумена" title="Варианты обложки разных изданий книги Ойкумена" />
+                </a>
+            </div>
+        </ins>
+        </div>
+
+</p>
+
+<div class="left_100">
+    <br />
+<p>
+Присутствуют все необходимые атрибуты космической оперы. Мощные космические крейсера, флуктуации пространства, телепатические поединки, битвы в космосе и на планетах, и многое другое. Вообще мне понравилось, насколько гармонична созданная авторами вселенная. Она большая, органично сплетённая, логичная, в ней ещё много всего происходит, а сколько ещё может произойти в будущем.. Чем-то напоминает миры <a href="http://kirbulychev.ru/alisa">Алисы Селезнёвой</a> созданные Киром Булычёвым, но только уже не для детей, а для публики постарше. Там хочется пожить.
+</p>
+<p>
+Одной из линий, не самой главной, но придающей красок созданному миру для меня явилось введение антагонизма, противопоставление двух путей развития цивилизаций: техногенного и опирающегося только на в внутреннюю энергию человека. Причём каждый путь вполне себе  логично обоснован.
+Ну да хватит дифирамбов, думаю моё впечатление от книги вполне понятно. О сюжете конечно говорить подробно нет надобности. Мне кажется более важным отметить какие-то запомнившиеся моменты, доставившие радость местечки в книге.<br />
+Что запомнилось. Конечно жизнь Лучано на «галерах». Отлично!<br />
+Татуировка, лоа, антиссы, пыточная, куклы, шелуха...<br />
+    <br />
+</p>
+
+<p>
+
+Одно жаль, всё быстро кончается, но не беда, уже звучит флейта, уже вышла  новая трилогия о жизни Ойкумены, тот же мир, другой взгляд, Лючано Борготта по прозвищу Тарталья уступает место Регине Ван Фрассен по прозвищу Химера.
+<br />
+<br />
+</p>
+
+
+<p>
+Рекомендую к прочтению однозначно!
+<p>
+
+    <br /><br />
+</div>
+
+
+
+
+            <div class="left_100">
+            <p>
+                                <span class='sign'>Павел Осипов<br/>
+                    2012.08.05                </span>
+            </p>
+        </div>
+                <br/><br/>
+        <ins><span style="float: right;position: relative;left: -310px;"><b>
+            <img src="/engine/images/top_sign_sm.png" alt="" style="border: 0px;"
+            />&nbsp;&nbsp;<a href="#void()" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });return false;"
+                    >Наверх</a></b>
+        </span><br/><br/></ins>
+        <br /><br />
+<br /><br />
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class='mainNewsDiv'>
+    
+
+    <table width='100%' style='background-color:#f4f4f4;'>
+    <tr>
+        <td class='t_tl'></td>
+        <td class='t_tc'></td>
+    </tr>
+    <tr>
+    <td class='t_ml'></td>
+    <td class='t_mc' align='left'>
+        <div id='news_block' class='opened_block newsMainTable'>
+        <p>Все категории</p>
+        <br/>
+            <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Книги, о которых приятно вспомнить после прочтения">
+    <a class="cloudEl cloudEl3" href="/books/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Книги</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Рооолики :)">
+    <a class="cloudEl cloudEl3" href="/roller/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Ролики</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="не-Полный список моих публикаций, либо просто ссылка на издание, либо вся статья в PDF">
+    <a class="cloudEl cloudEl3" href="/my_articles/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Публикации</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Сайты, в создании/поддержке которых я принимал участие, и о которых хочется что-то сказать">
+    <a class="cloudEl cloudEl3" href="/my_sites/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Мои сайты</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Информация вне определённой категории">
+    <a class="cloudEl cloudEl3" href="/stuff/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Разное</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Интересные вещи и рецепты связанные с PHP">
+    <a class="cloudEl cloudEl3" href="/php/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />PHP</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Если есть, что интересного о музыке, пишу сюда.">
+    <a class="cloudEl cloudEl3" href="/music/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Музыка</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="О семантической паутине и будущем развития Internet">
+    <a class="cloudEl cloudEl3" href="/semantic_web/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Semantic WEB</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Автоматизация некоторых рутинных операций в консоли и оффисе">
+    <a class="cloudEl cloudEl3" href="/pc_goodies/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Автоматизация рутинных операций</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Неочевидные вещи о PHP фреймворке Symfony2, которые потребовали времени на нахождение решения">
+    <a class="cloudEl cloudEl3" href="/symfony2/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Symfony2</a>
+   </span>
+    
+    </div>
+
+
+    <div id='fadback_block' class='closed_block newsMainTable'>
+        <div class='friend_link'>
+            <a href='http://iti.rtu.lv/'>Институт Информационных Технологий</a>
+        </div>
+        <div class='friend_link'>
+            <a href='http://www.tsi.lv' class='friend_link'>Институт Транспорта и Связи</a><br/>
+        </div>
+        <div class='friend_link'>
+            <a href='http://habrahabr.ru/users/pavel_osipov/' class='friend_link'>Я на Хабре</a><br/>
+        </div>
+    </div>
+    </td>
+
+    </tr>
+    <tr>
+        <td class='t_bl'></td>
+        <td class='t_bc'></td>
+    </tr>
+    </table>
+    
+</div>
+<a href="/semantic_web/" id="semanticWebImgHolder">
+    <div class="semanticWebImg" title="Семантическая паутинка"></div>
+</a>
+
+<div style="width: 100%;">
+    
+    <div id="rss_link_holder">
+        <a href="/engine/feed.xml">
+            <img src="/engine/images/1300800514_rss2_8-17.png"
+                 title="Получай извещение о появлении новостей на сайте"
+                 alt="Подписаться на RSS канал с извещением о появлении новостей на сайте" style="border: 0px;"
+            />
+        </a>
+        <h3>Внимание!</h3>
+        Теперь за обновлениями сайта можно следить подписавшись на RSS ленту!
+        <br/><br/>
+    </div>
+
+</div>
+
+
+<div class='w3'>
+    <p>
+            </p>
+</div>
+
+
+<div class='footer custom_hr'>
+    <div style="position: relative;top: -64px;">
+        <a href="/engine/feed.xml">
+            <img
+                    src="/engine/images/1300800514_rss2_8-17.png"
+                    style="float: left;border:0px"
+                    title="RSS feed"
+                    alt="RSS feed"
+            />
+        </a>
+    </div>
+
+
+    <div style="position: relative;top: -64px;">
+        <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#119;&#119;&#46;&#111;&#115;&#105;&#112;&#111;&#118;&#46;&#108;&#118;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;'
+        ><img src="/engine/images/1300137871_email_upload1.png" style="float: left;border:0px"
+              title="Есть что сказать? Пишите мне на электропочту" alt="Есть что сказать? Пишите мне на электропочту"/></a>
+    </div>
+    <br/>
+    Павел Осипов &copy; 2009 - 2019
+    <a href="https://plus.google.com/u/0/102649742378290957378?rel=author">Google+</a>
+</div>
+<div class='footDiv'>
+
+
+</div>
+
+
+</body>
+</html>

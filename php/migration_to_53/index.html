@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name='apple-mobile-web-app-capable' content='yes'/>
+    <meta name='mobile-web-app-capable' content='yes'>
+    <meta name='HandheldFriendly' content='true'/>
+    <meta name='viewport' content='width=device-width, user-scalable=no'/>
+
+    <link rel='SHORTCUT ICON' href='/engine/images/favicon.ico'/>
+    <title id='title'>Мой опыт миграции скриптов с версий PHP 5.1 на 5.3. С чем пришлось столкнуться и как я решал эти проблемы</title>
+
+    <link rel="stylesheet" href="/engine/style.css?v=3" type="text/css"/>
+    <link rel="stylesheet" href="/engine/css/menu.css?v=1" type="text/css"/>
+
+    <meta name="description" content="Мой опыт миграции скриптов с версий PHP 5.1 на 5.3. "/>
+    <meta name="keywords" content="РНР, PHP, eval, миграция на 5.3, Notepad++, Netbeans , замена по регулярным выражениям, mysql_list_tables, get_called_class"/>
+
+    <script type="text/javascript"
+            src="/engine/js/mootools/mootools-1.2.4-core_and_more.js"></script>
+    <script type="text/javascript" src="/engine/js/engine.js"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Quantico|Poiret+One|Bad+Script&amp;subset=latin,cyrillic'
+          rel='stylesheet' type='text/css'/>
+
+                <script type="text/javascript"
+                    src="/engine/js/highslide/highslide-full.packed.js"></script>
+            <link rel="stylesheet" type="text/css" href="/engine/js/highslide/highslide.css"/>
+            <script type="text/javascript">
+                hs.graphicsDir = '/engine/js/highslide/graphics/';
+            </script>
+                <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19813451-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+
+<body class="bg" id="body">
+
+
+<div class='headDiv'>
+    <div id="animate-area">
+        <div class='headImg'>
+            <a href='/' title='На главную'><img
+                        alt='На главную' class="logo_image"
+                        src='/engine/images/top_image.png'
+                /></a>
+        </div>
+
+        <!--        <div class='headPhrase'>-->
+        <!--            <sup>Персональный сайт Павла Осипова</sup>-->
+        <!--        </div>-->
+
+        <div style='float: right;'>
+            <!--menu-->
+            
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<!--            https://www.w3schools.com/howto/howto_js_off-canvas.asp-->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="topnav" id="myTopnav">
+    <a href="/my_articles/"
+       title="Не-полный список моих публикаций, либо просто ссылка на издание, либо вся статья в PDF">Публикации</a>
+    <a href="/php/" title="Интересные вещи и рецепты связанные с PHP">PHP</a>
+    <a href="/books/" class="active" title="Книги, о которых приятно вспомнить после прочтения">Книги</a>
+    <a href="#about" onclick="toggleNav()" id="other_categories" title="Другие интересные разделы">Другие разделы 👇</a>
+    <a href="javascript:void(0);" class="icon" onclick="togglemenu()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<style>
+
+</style>
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function togglemenu() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+
+<!-- The overlay -->
+<div id="myNav" class="overlay">
+
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <!-- Overlay content -->
+    <div class="overlay-content" id="overlay-content">
+        <a href="/roller/" title="Рооолики :)">Ролики</a>
+        <a href="/my_sites/"
+           title="Сайты, в создании/поддержке которых я принимал участие, и о которых хочется что-то сказать">Мои
+            сайты</a>
+        <a href="/stuff/" title="Информация без определённой категории">Разное</a>
+        <a href="/music/" title="Если есть, что интересного о музыке, пишу сюда.">Музыка</a>
+        <a href="/semantic_web/" title="О семантической паутине и будущем развития Internet">Semantic WEB</a>
+        <a href="/pc_goodies/" title="Автоматизация некоторых рутинных операций в консоли и оффисе">Автоматизация
+            рутинных операций</a>
+        <a href="/symfony2/"
+           title="Неочевидные вещи о PHP фреймворке Symfony2, которые потребовали времени на нахождение решения">Symfony2</a>
+    </div>
+
+</div>
+<script>
+    var navOpened = false;
+
+    function toggleNav() {
+        if (navOpened) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    }
+
+    /* Open */
+    function openNav() {
+        navOpened = true;
+        var item = document.getElementById("myNav");
+        item.style.height = "100%";
+        item.style.width = "100%";
+        document.getElementById("overlay-content").style.display = "inline-block";
+    }
+
+    /* Close */
+    function closeNav() {
+        navOpened = false;
+        var item = document.getElementById("myNav");
+        item.style.height = "0%";
+        item.style.width = "0%";
+        document.getElementById("overlay-content").style.display = "none";
+    }
+</script>        </div>
+    </div>
+</div>
+        <ins>
+            <span class="left_100 top_link_holder">
+                <img src="/engine/images/top_sign_sm.png" alt="" style="border: 0px;"/>
+                <b>&nbsp;&nbsp;<a href="../#php">Назад в „PHP“</a></b>&nbsp;&nbsp;
+            </span>
+        </ins>
+        
+<div class='mainDiv'>
+
+    <div class='mainTextDiv'>
+
+        <h1 title="Пришлось поработать переводя большой (чужой) проект на наовый сервер">
+            Что пришлось править
+        </h1>
+
+        <div id='mainTextSubpost' class='mainTextSubpost'>
+
+            <p>
+                Сайт, с которым пришлось работать использовал одну экзотическую CMS, поэтому большинство работы
+                как раз и пришлось не на правку скриптов сайта, а на обновление этой CMS.<br/>
+            </p>
+
+            <p>
+                Для начала пришлось разобраться с функциями ereg и eregi которые в PHP 5.3 объявлены устаревшими
+                (deprecated).
+                Так-как функция активно использовалась в движке, то руками править кучу файлов не резон, поэтому
+                используется <a href="http://notepad-plus-plus.org/">Notepad++</a> у которого есть функция замены в
+                файлах по
+                маске регулярного выражения. К сожалению даже в седьмой версии моей текущей IDE
+                <a href="http://netbeans.org/">Netbeans</a> такого
+                счастья не предусмотрено <span style="font-size: xx-small">(грустный смайл)</span>.
+                <br/>
+                Хорошая <a
+                        href="http://sourceforge.net/apps/mediawiki/notepad-plus/index.php?title=Regular_Expressions#Notepad.2B.2B_regex_syntax">вики</a>
+                по регуляркам Notepad++.
+            </p>
+
+            <br/>
+            <h2><a href="http://www.php.net/ereg"><span style="color: #990000;">ereg</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span></h2>
+            <p>
+                Всё упирается в написание корректного регулярника для замены ereg("<i>выражение</i>") на
+                preg_match("/<i>выражение</i>/").
+                <br/>
+                А вот и оно
+                <br/>
+                <span style="font-size: xx-small">барабанная дробь</span>
+                <br/>
+                <b>Search for:</b> &nbsp;&nbsp;&nbsp; ereg\((['"])(.*)(['"])([,\)])<br/>
+                <b>Replace by:</b> &nbsp;&nbsp;&nbsp; preg_match(\1/\2/\3\4<br/>
+            </p>
+
+            <br/><br/>
+
+            <h2><a href="http://www.php.net/mysql_list_tables"><span style="color: #990000;">mysql_list_tables</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span></h2>
+
+            <p>
+                Эта функция также объявлена устаревшей (deprecated), поэтому нуждается в замене.
+                Её целью является получить список всех таблиц в целевой базе данных:<br/>
+                <code><span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/mysql_list_tables"><span style="color: #990000;">mysql_list_tables</span></a><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #000088;">$db</span><span style="color: #339933;">,</span> <span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #000088;">$identifier</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></code><br/>
+                Поэтому она заменяется простым запросом:<br/>
+
+                <code>    <span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/mysql_query"><span style="color: #990000;">mysql_query</span></a><span style="color: #009900;">&#40;</span> <span style="color: #0000ff;">&quot;SHOW TABLES FROM &quot;</span><span style="color: #339933;">.</span><span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #000088;">$db</span><span style="color: #339933;">,</span> <span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #000088;">$identifier</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></code><br/>
+                <br/>
+                *Вместо <span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #000088;">$db</span> конечно может быть записано имя базы.
+
+            </p>
+
+            <br/>
+
+            <h2><a href="http://www.php.net/eval"><span style="color: #990000;">eval</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span></h2>
+            <p>
+                Вспоминаем, что начиная с 5.3 РНР не разрешает обращаться к обычным методам с использованием синтаксиса
+                доступа к статическим
+                свойствам/методам, и все строки вида<br/>
+                <code><a href="http://www.php.net/eval"><span style="color: #990000;">eval</span></a> <span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;return <span style="color: #006699; font-weight: bold;">$class_name</span>::__construct();&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></code><br/>
+                меняем на такое вот<br/>
+                <code><span style="color: #000088;">$class_return</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> <span style="color: #000088;">$class_name</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></code><br/>
+
+                <br/>
+                Ещё пример<br/>
+                <code>
+
+                    <br />
+<span style="color: #000088;">$result</span> <span style="color: #339933;">.=</span> <a href="http://www.php.net/eval"><span style="color: #990000;">eval</span></a><span style="color: #009900;">&#40;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #0000ff;">&quot;parser_&quot;</span><span style="color: #339933;">.</span><span style="color: #000088;">$parser</span><span style="color: #339933;">.</span><span style="color: #0000ff;">&quot;::<span style="color: #006699; font-weight: bold;">$modifier</span> = <span style="color: #006699; font-weight: bold;">$modifier</span>; &quot;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #0000ff;">&quot;parser_&quot;</span><span style="color: #339933;">.</span><span style="color: #000088;">$parser</span><span style="color: #339933;">.</span><span style="color: #0000ff;">&quot;::__construct(); &quot;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #0000ff;">&quot;return parser_&quot;</span><span style="color: #339933;">.</span><span style="color: #000088;">$parser</span><span style="color: #339933;">.</span><span style="color: #0000ff;">&quot;::parse(&quot;</span><span style="color: #339933;">.</span><span style="color: #000088;">$value</span><span style="color: #339933;">.</span><span style="color: #0000ff;">&quot;);&quot;</span><br />
+<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>                 </code>
+                <br/>меняем на<br/>
+                <code>
+                    <br />
+<span style="color: #000088;">$parser_base</span> <span style="color: #339933;">=</span><span style="color: #0000ff;">&quot;parser_&quot;</span><span style="color: #339933;">;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000088;">$parser_name</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$parser_base</span><span style="color: #339933;">.</span><span style="color: #000088;">$parser</span><span style="color: #339933;">;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000088;">$parser_obj</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> <span style="color: #000088;">$parser_name</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000088;">$parser_obj</span><span style="color: #339933;">::</span><span style="color: #000088;">$modifier</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$modifier</span><span style="color: #339933;">;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000088;">$result</span> <span style="color: #339933;">.=</span> <span style="color: #000088;">$parser_obj</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">parse</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$value</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span><br />
+<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span> 
+                </code>
+
+            </p>
+
+            <br/>
+            <h2>get_called_class<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span></h2>
+            <p>
+                Эта функция добавлена в 5.3 и на мой взгляд является отличным инструментом для создания более
+                элегантного, компактного и эффективного кода.
+                В своём ORM велосипеде я её активно использую, жаль только, что большинство проектов всё ещё на версиях
+                РНР ниже 5.3.
+            </p>
+
+            <br/><br/>
+            <h3>Пока всё. Успешных проектов!</h3>
+
+                    <br/><br/>
+        <ins><span style="float: right;position: relative;left: -310px;"><b>
+            <img src="/engine/images/top_sign_sm.png" alt="" style="border: 0px;"
+            />&nbsp;&nbsp;<a href="#void()" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });return false;"
+                    >Наверх</a></b>
+        </span><br/><br/></ins>
+        
+        </div>
+    </div>
+</div>
+
+
+
+<div class='mainNewsDiv'>
+    
+
+    <table width='100%' style='background-color:#f4f4f4;'>
+    <tr>
+        <td class='t_tl'></td>
+        <td class='t_tc'></td>
+    </tr>
+    <tr>
+    <td class='t_ml'></td>
+    <td class='t_mc' align='left'>
+        <div id='news_block' class='opened_block newsMainTable'>
+        <p>Все категории</p>
+        <br/>
+            <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Книги, о которых приятно вспомнить после прочтения">
+    <a class="cloudEl cloudEl3" href="/books/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Книги</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Рооолики :)">
+    <a class="cloudEl cloudEl3" href="/roller/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Ролики</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="не-Полный список моих публикаций, либо просто ссылка на издание, либо вся статья в PDF">
+    <a class="cloudEl cloudEl3" href="/my_articles/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Публикации</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Сайты, в создании/поддержке которых я принимал участие, и о которых хочется что-то сказать">
+    <a class="cloudEl cloudEl3" href="/my_sites/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Мои сайты</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Информация вне определённой категории">
+    <a class="cloudEl cloudEl3" href="/stuff/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Разное</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Интересные вещи и рецепты связанные с PHP">
+    <a class="cloudEl cloudEl3" href="/php/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />PHP</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Если есть, что интересного о музыке, пишу сюда.">
+    <a class="cloudEl cloudEl3" href="/music/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Музыка</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="О семантической паутине и будущем развития Internet">
+    <a class="cloudEl cloudEl3" href="/semantic_web/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Semantic WEB</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Автоматизация некоторых рутинных операций в консоли и оффисе">
+    <a class="cloudEl cloudEl3" href="/pc_goodies/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Автоматизация рутинных операций</a>
+   </span>
+        <span style="margin-right: 0.5em;margin-bottom: 0.5em;float: left;" title="Неочевидные вещи о PHP фреймворке Symfony2, которые потребовали времени на нахождение решения">
+    <a class="cloudEl cloudEl3" href="/symfony2/"
+
+    ><img src="/engine/images/li_sign_sm.png" alt="" style="border: 0px;"
+        />Symfony2</a>
+   </span>
+    
+    </div>
+
+
+    <div id='fadback_block' class='closed_block newsMainTable'>
+        <div class='friend_link'>
+            <a href='http://iti.rtu.lv/'>Институт Информационных Технологий</a>
+        </div>
+        <div class='friend_link'>
+            <a href='http://www.tsi.lv' class='friend_link'>Институт Транспорта и Связи</a><br/>
+        </div>
+        <div class='friend_link'>
+            <a href='http://habrahabr.ru/users/pavel_osipov/' class='friend_link'>Я на Хабре</a><br/>
+        </div>
+    </div>
+    </td>
+
+    </tr>
+    <tr>
+        <td class='t_bl'></td>
+        <td class='t_bc'></td>
+    </tr>
+    </table>
+    
+</div>
+<a href="/semantic_web/" id="semanticWebImgHolder">
+    <div class="semanticWebImg" title="Семантическая паутинка"></div>
+</a>
+
+<div style="width: 100%;">
+    
+    <div id="rss_link_holder">
+        <a href="/engine/feed.xml">
+            <img src="/engine/images/1300800514_rss2_8-17.png"
+                 title="Получай извещение о появлении новостей на сайте"
+                 alt="Подписаться на RSS канал с извещением о появлении новостей на сайте" style="border: 0px;"
+            />
+        </a>
+        <h3>Внимание!</h3>
+        Теперь за обновлениями сайта можно следить подписавшись на RSS ленту!
+        <br/><br/>
+    </div>
+
+</div>
+
+
+<div class='w3'>
+    <p>
+            </p>
+</div>
+
+
+<div class='footer custom_hr'>
+    <div style="position: relative;top: -64px;">
+        <a href="/engine/feed.xml">
+            <img
+                    src="/engine/images/1300800514_rss2_8-17.png"
+                    style="float: left;border:0px"
+                    title="RSS feed"
+                    alt="RSS feed"
+            />
+        </a>
+    </div>
+
+
+    <div style="position: relative;top: -64px;">
+        <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#119;&#119;&#46;&#111;&#115;&#105;&#112;&#111;&#118;&#46;&#108;&#118;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;'
+        ><img src="/engine/images/1300137871_email_upload1.png" style="float: left;border:0px"
+              title="Есть что сказать? Пишите мне на электропочту" alt="Есть что сказать? Пишите мне на электропочту"/></a>
+    </div>
+    <br/>
+    Павел Осипов &copy; 2009 - 2019
+    <a href="https://plus.google.com/u/0/102649742378290957378?rel=author">Google+</a>
+</div>
+<div class='footDiv'>
+
+
+</div>
+
+
+</body>
+</html>
